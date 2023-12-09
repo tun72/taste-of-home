@@ -2,7 +2,7 @@
 
 function ServiceSection() {
   return (
-    <section className="section-feature h-full container" id="services">
+    <section className="section-feature w-full px-[7rem] py-[8rem]" id="services">
       <h2 className="secondary__heading">Service and feature</h2>
       <div className="feature">
         <div className="feature__left">

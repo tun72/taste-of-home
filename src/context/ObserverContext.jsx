@@ -5,12 +5,9 @@ const ObserverContext = createContext();
 function ObserverProvider({ children }) {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  const ref = useRef()
-
   return (
     <ObserverContext.Provider
       value={{
-        ref,
         isIntersecting,
         setIsIntersecting,
       }}

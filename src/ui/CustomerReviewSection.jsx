@@ -13,10 +13,13 @@ import ReviewSlide from "./ReviewSlide";
 function CustomerReviewSection() {
   const [setSwiperRef] = useState(null);
   return (
-    <section className="section-customer container h-full" id="reviews">
+    <section
+      className="section-customer  w-full px-[7rem] py-[8rem]"
+      id="reviews"
+    >
       <div className="customer">
         <div className="customer__header">
-          <h2 className="customer__title">Customer Review</h2>
+          <h2 className="secondary__heading">Customer Review</h2>
         </div>
 
         <div className="customer__body">

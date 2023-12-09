@@ -1,5 +1,6 @@
 import Pagination from "../../ui/Pagination";
 import Spinner from "../../ui/Spinner";
+import { PAGE_SIZE } from "../../utils/constants";
 import IngredientMenuList from "./IngredientMenuList";
 import { useIngredients } from "./useIngredients";
 

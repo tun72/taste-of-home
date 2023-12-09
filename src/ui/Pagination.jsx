@@ -79,7 +79,7 @@ function Pagination({ count }) {
   }
 
   console.log(count);
-  if (pageCount === 1) return;
+  if (pageCount === 1 || pageCount === 0) return;
 
   return (
     <StyledPagination>

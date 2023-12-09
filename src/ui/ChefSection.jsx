@@ -1,3 +1,6 @@
+import { HiChevronUp } from "react-icons/hi2";
+import { Link } from "react-router-dom";
+
 function ChefSection() {
   return (
     <section className="chefs section-container" id="chefs">
@@ -72,10 +75,10 @@ function ChefSection() {
         </div>
       </div>
 
-      <div className="up-popup">
-        <a href="#">
-          <ion-icon name="chevron-up-outline"></ion-icon>
-        </a>
+      <div className="up-popup col-white bg-green-400">
+        <Link to="/">
+          <HiChevronUp />
+        </Link>
       </div>
     </section>
   );

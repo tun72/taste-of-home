@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-around;
 
+  margin-bottom: 2rem;
   padding: 0.6rem;
   z-index: 10;
 
@@ -30,7 +31,7 @@ function Header({ ishome }) {
   const { isIntersecting } = useObserver();
 
   return (
-    <StyledHeader blur={isIntersecting} isHome={ishome}>
+    <StyledHeader blur={ishome && isIntersecting} isHome={ishome}>
       <Logo />
       <HeaderMenu />
       <HeaderOptions />

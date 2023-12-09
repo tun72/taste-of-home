@@ -1,11 +1,15 @@
-
 import { useCart } from "../../context/CartContext";
 import ButtonOrder from "../../ui/ButtonOrder";
 import CartItem from "./CartItem";
 import Prevoius from "../../ui/Prevoius";
-
+import { useNavigate } from "react-router-dom";
 function CartData() {
   const { ingredients, dispatch } = useCart();
+  const navigate = useNavigate();
+
+  function handelOrder() {
+    navigate("/order");
+  }
   return (
     <div className="px-4 py-3">
       <Prevoius> &larr; Back to menu</Prevoius>
@@ -23,7 +27,7 @@ function CartData() {
           </ul>
 
           <div className="mt-6 space-x-2">
-            <ButtonOrder>Order Now</ButtonOrder>
+            <ButtonOrder onClick={handelOrder}>Order Now</ButtonOrder>
 
             <ButtonOrder
               type="secondary"

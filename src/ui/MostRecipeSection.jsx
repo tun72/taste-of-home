@@ -1,6 +1,9 @@
 function MostRecipeSection() {
   return (
-    <section class="section-meal container h-full" id="food_receipe">
+    <section
+      class="section-meal  h-full w-full px-[7rem] py-[8rem]"
+      id="food_receipe"
+    >
       <div class="meal">
         <div class="meal__header">
           <h2 class="meal__heading">Most Recipes</h2>

@@ -6,18 +6,17 @@ import Category from "../features/category/Category";
 const StyledIngredients = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 `;
 
 function Ingredients() {
   return (
-    <StyledIngredients className="mb-10 max-w-7xl gap-4">
+    <div className="mx-auto grid max-w-[140rem] grid-cols-[auto_1fr] items-start gap-[6rem] relative">
       <Category />
-      <div className="flex flex-col gap-5">
+      <StyledIngredients className="mx-auto mb-10 w-full gap-4">
         <IngredientHeader />
         <IngredientMenu />
-      </div>
-    </StyledIngredients>
+      </StyledIngredients>
+    </div>
   );
 }
 

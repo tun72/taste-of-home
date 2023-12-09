@@ -1,11 +1,12 @@
 import "../sass/main.scss";
 import Heading from "./Heading";
 import { useObserver } from "../context/ObserverContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiMapPin } from "react-icons/hi2";
 function HeroSection() {
-  const { ref, setIsIntersecting } = useObserver();
+  const { setIsIntersecting } = useObserver();
   const [search, setSearch] = useState("");
+  const ref = useRef()
   useEffect(
     function () {
       if (!ref.current) {

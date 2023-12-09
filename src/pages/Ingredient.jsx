@@ -1,8 +1,8 @@
+import IngredientDetail from "../features/ingredients/IngredientDetail"
+
 function Ingredient() {
     return (
-        <div>
-            
-        </div>
+        <IngredientDetail />
     )
 }
 
