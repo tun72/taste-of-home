@@ -3,15 +3,21 @@ import ButtonOrder from "../../ui/ButtonOrder";
 import CartItem from "./CartItem";
 import Prevoius from "../../ui/Prevoius";
 import { useNavigate } from "react-router-dom";
+import { useDeleteCart } from "./useDeleteCart";
 function CartData() {
   const { ingredients, dispatch } = useCart();
   const navigate = useNavigate();
-
+  const { deleteCart, isLoading } = useDeleteCart();
   function handelOrder() {
     navigate("/order");
+  
+  }
+  function handelDelete() {
+    dispatch({ type: "cart/clear" });
+    deleteCart({ status: "all" });
   }
   return (
-    <div className="px-4 py-3">
+    <div className="">
       <Prevoius> &larr; Back to menu</Prevoius>
 
       {ingredients.length ? (
@@ -27,11 +33,14 @@ function CartData() {
           </ul>
 
           <div className="mt-6 space-x-2">
-            <ButtonOrder onClick={handelOrder}>Order Now</ButtonOrder>
+            <ButtonOrder onClick={handelOrder} disabled={isLoading}>
+              Order Now
+            </ButtonOrder>
 
             <ButtonOrder
               type="secondary"
-              onClick={() => dispatch({ type: "cart/clear" })}
+              onClick={handelDelete}
+              disabled={isLoading}
             >
               Clear cart
             </ButtonOrder>

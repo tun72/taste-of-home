@@ -9,7 +9,7 @@ function DropDrownMenu() {
 
       <ul class="dropdown-list">
         <li class="dropdown-item">
-          <Link to='food-recipe'>Food recipe</Link>
+          <Link to='recipes'>Food recipe</Link>
         </li>
 
         <li class="dropdown-item">

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
+
 const CartContext = createContext();
 const initialCart = {
   ingredients: localStorage.getItem("ingredients")
@@ -7,10 +8,13 @@ const initialCart = {
     : [],
 };
 let newIngrdient;
+
 function reducer(state, action) {
   switch (action.type) {
     case "cart/add":
       const item = [...state.ingredients, action.payload];
+
+      
       return { ingredients: item };
     case "cart/increase":
       newIngrdient = state.ingredients.map((ing) =>
@@ -52,11 +56,12 @@ function reducer(state, action) {
 }
 
 function CartProvider({ children }) {
+  
   const [{ ingredients }, dispatch] = useReducer(reducer, initialCart);
-
+  
   useEffect(
     function () {
-      if (ingredients.length === 0) return;
+      // if (ingredients.length === 0) return;
       localStorage.setItem("ingredients", JSON.stringify(ingredients));
     },
     [ingredients],
@@ -65,6 +70,8 @@ function CartProvider({ children }) {
   function getCurrentById(id) {
     return ingredients.find((ing) => ing.id === id)?.quantity ?? 0;
   }
+
+
 
   return (
     <CartContext.Provider value={{ ingredients, dispatch, getCurrentById }}>

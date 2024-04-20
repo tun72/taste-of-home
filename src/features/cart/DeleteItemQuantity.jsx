@@ -1,17 +1,18 @@
 import { useCart } from "../../context/CartContext";
 import ButtonOrder from "../../ui/ButtonOrder";
+import { useDeleteCart } from "./useDeleteCart";
 
 function DeleteItemQuantity({ id }) {
   const { dispatch } = useCart();
 
-  console.log(id);
+  const { deleteCart, isLoading } = useDeleteCart();
+  function handelDelete() {
+    dispatch({ type: "cart/delete", payload: id });
+    deleteCart({ id });
+  }
+
   return (
-    <ButtonOrder
-      type="delete"
-      onClick={() => {
-        dispatch({ type: "cart/delete", payload: id });
-      }}
-    >
+    <ButtonOrder type="delete" onClick={handelDelete} disabled={isLoading}>
       Delete
     </ButtonOrder>
   );

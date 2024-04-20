@@ -6,6 +6,8 @@ function IngredientDetailBox({
   data: { name, price, _id, category, description, imageUrl, rating, quantity },
   type = 0,
 }) {
+
+  console.log(description);
   return (
     <>
       {type !== 1 ? (
@@ -37,7 +39,6 @@ function IngredientDetailBox({
             <span className="detail-box__quantity">
               Only <span>${quantity}</span> items left
             </span>
-            <span className="detail-box__quantity">Shop Now 💥</span>
             <AddToCart name={name} price={price} id={_id} />
           </div>
         </div>

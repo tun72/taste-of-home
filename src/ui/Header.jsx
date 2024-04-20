@@ -3,6 +3,8 @@ import Logo from "./Logo";
 import HeaderMenu from "./HeaderMenu";
 import { useObserver } from "../context/ObserverContext";
 import HeaderOptions from "./HeaderOptions";
+import ButtonOrder from "./ButtonOrder";
+import { useToken } from "../hooks/useToken";
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -29,12 +31,19 @@ const StyledHeader = styled.header`
 
 function Header({ ishome }) {
   const { isIntersecting } = useObserver();
+  const { token } = useToken();
 
   return (
     <StyledHeader blur={ishome && isIntersecting} isHome={ishome}>
       <Logo />
       <HeaderMenu />
-      <HeaderOptions />
+      {!token ? (
+        <ButtonOrder type="secondary" to="/login">
+          Login Now
+        </ButtonOrder>
+      ) : (
+        <HeaderOptions />
+      )}
     </StyledHeader>
   );
 }

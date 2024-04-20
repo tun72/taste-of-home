@@ -10,11 +10,14 @@
     height: 100%;
     display: flex;
 
+
     &-img {
         //test
         height: 70rem;
         padding: 2rem 6rem;
         flex: 0 0 62%;
+        filter: brightness(90%);
+
 
         img {
             width: 100%;
@@ -22,6 +25,7 @@
             // object-fit: cover;
             border-radius: 20px;
             // box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+            border: 1px solid var(--color-grey-200);
 
             box-shadow: 0px 25px 80px rgba(0, 0, 0, 0.15);
         }
@@ -42,8 +46,10 @@
         // background: blue;
         padding: 15px;
         border-radius: 10px;
-
-        box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+        background-color: var(--color-grey-0);
+        border: 1px solid var(--color-grey-100);
+        border-radius: var(--border-radius-md);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 
         // box-shadow: 0px 25px 80px rgba(0, 0, 0, 0.15);
         &__tag {
@@ -53,16 +59,22 @@
             gap: 10px;
 
             margin-bottom: $margin-bottom-sm1;
+            color: var(--color-brand-500) !important;
 
             span {
                 //test
-                border: 1px solid $color-secondary;
+                border: 1px solid var(--color-brand-500);
                 padding: 3px 4px;
+                border-radius: 2rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
 
-                a {
-                    //test
-                    color: $color-secondary !important;
-                }
+                font-size: 1.4rem;
+
+                // a {
+                //     //test
+                //     color: $color-secondary !important;
+                // }
             }
         }
 
@@ -73,7 +85,7 @@
             margin-bottom: 1rem;
 
             //test 
-            color: $color-secondary;
+            // color: $color-secondary;
 
         }
 
@@ -93,7 +105,7 @@
             font-weight: 600;
             // letter-spacing: 1px;
             // test 
-            color: $color-secondary;
+
             margin-bottom: $margin-bottom-sm1;
 
         }
@@ -102,7 +114,7 @@
             font-size: 1.8rem;
 
             // test
-            color: $color-secondary;
+
             letter-spacing: 1;
             font-weight: 600;
         }
@@ -128,7 +140,6 @@
             display: inline-block;
             padding: 0.5rem 7rem;
             // test
-            color: #fff;
             background: $color-primary;
             border-radius: 3rem;
             margin-bottom: $margin-bottom-sm1;
@@ -198,12 +209,11 @@
 
         &__quantity {
             font-size: 1.4rem;
-            color: #000;
 
             span {
                 font-size: 1.8rem;
                 font-weight: 600;
-                color: green;
+                color: var(--color-brand-500);
             }
         }
 
@@ -234,16 +244,12 @@
         font-weight: 600;
         letter-spacing: 1px;
         display: block;
-
-        // test
-        color: $color-primary;
     }
 
     .similar-caption {
         font-size: 1.4rem;
 
         // test 
-        color: black;
         font-weight: 600;
         letter-spacing: 1px;
         opacity: 0.6;
@@ -314,15 +320,12 @@
             &__price {
                 font-size: 1.8rem;
                 font-weight: 600;
-                color: $color-secondary;
+
 
                 span {
                     margin-left: 1rem;
                     font-size: 1.4rem;
                     letter-spacing: 1px;
-
-                    // test 
-                    color: gray;
                 }
 
             }
@@ -351,12 +354,15 @@
                 gap: 10px;
 
                 span {
+                    color: var(--color-brand-500) !important;
 
-                    // test
-                    background: $color-primary;
-                    color: #fff;
+                    border: 1px solid var(--color-brand-500);
+                    padding: 3px 4px;
+                    border-radius: 2rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+
                     font-size: 1.4rem;
-                    padding: 0.3rem 0.4rem;
                 }
 
                 span {}

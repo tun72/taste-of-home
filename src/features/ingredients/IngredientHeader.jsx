@@ -18,7 +18,8 @@ function IngredientHeader() {
     searchParams.delete("category");
   }
 
-  function handelSearch() {
+  function handelSearch(e) {
+    e.preventDefault();
     searchParams.set("search", search);
     setSearchParams(searchParams);
   }
@@ -30,7 +31,10 @@ function IngredientHeader() {
           ? "All ingredients"
           : category || search || "All ingredients"}
       </Heading>
-      <div className="flex items-center gap-2">
+      <form
+        className="flex items-center gap-2"
+        onSubmit={(e) => handelSearch(e)}
+      >
         <Input
           type="text"
           name="search"
@@ -38,10 +42,10 @@ function IngredientHeader() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="text-[1.5rem] " onClick={handelSearch}>
+        <button className="text-[1.5rem] ">
           <HiMagnifyingGlass />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -21,13 +21,15 @@ const Avatar = styled.img`
   outline: 2px solid var(--color-grey-100);
 `;
 
-function UserAvatar() {
-    return (
-        <StyledUserAvatar>
-            <Avatar src="./imgs/profile.jpg" />
-            <span>Tun Tun Myint</span>
-        </StyledUserAvatar>
-    )
+function UserAvatar({ name }) {
+  return (
+    <Link to="/profile">
+      <StyledUserAvatar>
+        <Avatar src="./imgs/profile.jpg" />
+        <span>{name}</span>
+      </StyledUserAvatar>
+    </Link>
+  );
 }
 
-export default UserAvatar
+export default UserAvatar;

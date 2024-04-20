@@ -14,7 +14,7 @@ function IngredientDetail() {
   return (
     <>
       <section className="detail-section section-container">
-        <Prevoius> &larr; Back to menu</Prevoius>
+        {/* <Prevoius> &larr; Back to menu</Prevoius> */}
         <div className="detail">
           <div className="detail-img">
             <img src={imageUrl} alt={name} />

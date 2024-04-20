@@ -2,9 +2,11 @@ import { useCart } from "../context/CartContext";
 import DeleteItemQuantity from "../features/cart/DeleteItemQuantity";
 import UpdateItemQuantity from "../features/cart/UpdateItemQuantity";
 import ButtonOrder from "./ButtonOrder";
+import { useAddCart } from "../features/cart/useAddCart";
 
 function AddToCart({ name, price, id }) {
-  const { dispatch, getCurrentById, addCart } = useCart();
+  const { addToCart, isLoading } = useAddCart();
+  const { dispatch, getCurrentById } = useCart();
   const count = getCurrentById(id);
 
   const isIncart = count > 0;
@@ -14,7 +16,8 @@ function AddToCart({ name, price, id }) {
       type: "cart/add",
       payload: { name, price, id, quantity: 1, totalPrice: 1 },
     });
-    addCart();
+
+    addToCart({ id, quantity: 1 });
   }
 
   return (
@@ -25,7 +28,7 @@ function AddToCart({ name, price, id }) {
           <DeleteItemQuantity id={id} />
         </div>
       )}
-      {!count && <ButtonOrder onClick={handelAdd}>Add to cart</ButtonOrder>}
+      {!count && <ButtonOrder onClick={handelAdd} size="small">Add to cart</ButtonOrder>}
     </>
   );
 }

@@ -18,9 +18,9 @@ $temp-secondary-color: rgb(91, 212, 91);
 
 
 .main-recipe {
+ 
   .recipe-container {
-    margin: 50px auto;
-    width: 1300px;
+    margin: 5rem auto;
     // background-color: #ffffff;
     border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -29,7 +29,7 @@ $temp-secondary-color: rgb(91, 212, 91);
     -o-border-radius: 20px;
 
     &-left {
-      padding: 0 60px !important;
+     
  
 
       .btn-sort {
@@ -60,10 +60,11 @@ $temp-secondary-color: rgb(91, 212, 91);
     }
 
     &-right {
-      margin-top: 6rem;
+      width: 34rem;
 
       h3 {
         color: white;
+        margin-bottom: 2rem;
         padding: 10px;
         width: 80%;
         background-color: $color-primary;
@@ -71,13 +72,11 @@ $temp-secondary-color: rgb(91, 212, 91);
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: 0.1rem;
-        margin-bottom: 3rem;
         border-radius: 10px;
       }
 
       .catergories-container {
         position: relative;
-        margin-top: 40px;
         margin-left: 7px;
         padding: 20px;
         width: 80%;
@@ -147,6 +146,7 @@ $temp-secondary-color: rgb(91, 212, 91);
     &__bar {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
     box-shadow: 1px 1px 20px #00000020;
     min-width: 50rem;

@@ -8,7 +8,7 @@ export function useIngredient() {
     queryKey: ["ingredient", ingredientId],
   });
 
-  console.log(data);
+  // console.log(data);
 
   return { data, isLoading, error };
 }

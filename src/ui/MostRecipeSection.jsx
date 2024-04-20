@@ -1,3 +1,5 @@
+import MealList from "./MealList";
+
 function MostRecipeSection() {
   return (
     <section
@@ -12,7 +14,9 @@ function MostRecipeSection() {
           </a>
         </div>
         <nav class="meal__nav">
-          <ul class="meal__list"></ul>
+          <ul class="meal__list">
+            <MealList />
+          </ul>
         </nav>
         <div class="meal__post"></div>
       </div>

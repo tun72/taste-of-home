@@ -137,25 +137,27 @@
     width: 30rem;
     position: fixed;
     bottom: 5rem;
-    left: 5rem;
+    left:9.5rem;
     padding: 2rem;
 
     display: flex;
     align-items: center;
     gap: 2rem;
-    background: #fff;
+    background: var(--color-grey-100);
+    border: 1px solid var(--color-grey-400);
     border-radius: 0.5rem;
     opacity: 0;
     transform: translateX(-100%);
     visibility: hidden;
-    box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 
     animation: mypop 15s ease-in-out infinite;
 
     img {
-        width: 8rem;
+        width: 10rem;
         height: 8rem;
-        border: 1px solid var(--cultured);
+        object-fit: cover;
     }
 
     &-detail {
@@ -166,7 +168,6 @@
 
     &-title {
         font-size: 1.4rem;
-        color: gray;
         opacity: 0.8;
 
     }
@@ -583,3 +584,4 @@ textarea {
 .food_svg {
     fill: $color-secondary;
 }
+

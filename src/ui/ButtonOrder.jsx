@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ButtonOrder({ children, onClick, type, to }) {
+function ButtonOrder({ children, onClick, type, to, disabled }) {
   let btnClass =
     "inline-block rounded-full bg-green-400 px-[2rem] py-[1rem] text-[1.2rem] font-semibold uppercase tracking-wide text-stone-700 transition-colors duration-300 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:ring focus:ring-green-300 focus:ring-offset-2 disabled:cursor-not-allowed";
 
@@ -26,7 +26,7 @@ function ButtonOrder({ children, onClick, type, to }) {
     );
   }
   return (
-    <button className={btnClass} onClick={onClick}>
+    <button className={btnClass} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

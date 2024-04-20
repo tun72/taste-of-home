@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledLogo = styled(Link)`
+const StyledLogo = styled.div`
   text-align: center;
 `;
 
@@ -13,8 +13,10 @@ const Img = styled.img`
 function Logo() {
   const src = "./icons/logos.png";
   return (
-    <StyledLogo to="/">
-      <Img src={src} alt="Logo" />
+    <StyledLogo>
+      <Link to="/" className="inline-block text-center">
+        <Img src={src} alt="Logo" />
+      </Link>
     </StyledLogo>
   );
 }

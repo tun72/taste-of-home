@@ -21,7 +21,7 @@ function HeaderMenu() {
   ];
 
   if (location.pathname !== "/home")
-    headerItems = ["Food recipes", "ingredients", "Asia", "history"];
+    headerItems = ["recipes", "ingredients", "Asia", "history"];
 
   headerItems.forEach((item) => console.log(item));
   return (
