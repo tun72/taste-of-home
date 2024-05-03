@@ -1,4 +1,4 @@
-import { useToken } from "../hooks/useToken";
+
 import { URL } from "../utils/constants";
 
 export async function editUserData({ name }) {

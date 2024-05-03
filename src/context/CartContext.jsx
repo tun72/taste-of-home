@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-
 const CartContext = createContext();
 const initialCart = {
   ingredients: localStorage.getItem("ingredients")
@@ -14,7 +13,6 @@ function reducer(state, action) {
     case "cart/add":
       const item = [...state.ingredients, action.payload];
 
-      
       return { ingredients: item };
     case "cart/increase":
       newIngrdient = state.ingredients.map((ing) =>
@@ -56,9 +54,8 @@ function reducer(state, action) {
 }
 
 function CartProvider({ children }) {
-  
   const [{ ingredients }, dispatch] = useReducer(reducer, initialCart);
-  
+
   useEffect(
     function () {
       // if (ingredients.length === 0) return;
@@ -71,8 +68,6 @@ function CartProvider({ children }) {
     return ingredients.find((ing) => ing.id === id)?.quantity ?? 0;
   }
 
-
-
   return (
     <CartContext.Provider value={{ ingredients, dispatch, getCurrentById }}>
       {children}
@@ -82,7 +77,8 @@ function CartProvider({ children }) {
 
 function useCart() {
   const content = useContext(CartContext);
-  // console.log(content);
+  if (content === undefined)
+    throw new Error("CartContext are use outside of the CartProvider");
   return content;
 }
 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const ObserverContext = createContext();
 
@@ -21,7 +21,7 @@ function useObserver() {
   const context = useContext(ObserverContext);
 
   if (context === undefined)
-    throw new Error("CitiesContext was used outside the CitiesProvider");
+    throw new Error("ObserverContext are use outside of the ObserverProvider");
   return context;
 }
 
