@@ -38,7 +38,6 @@ function reducer(state, action) {
             : { ...ing },
         )
         .filter((ing) => ing.quantity > 0);
-
       return { ingredients: newIngrdient };
     case "cart/delete":
       const ingredients = state.ingredients.filter(

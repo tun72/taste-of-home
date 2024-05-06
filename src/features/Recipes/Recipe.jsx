@@ -6,13 +6,10 @@ import SearchForm from "../../ui/SearchForm";
 import RecipeCategory from "./RecipeCategory";
 function Recipe() {
   return (
-    <>
-      <RecipeCategory />
-      <div>
-        <SearchForm />
-        <SkeletonLoading />
-      </div>
-    </>
+    <div>
+      <SearchForm />
+      <SkeletonLoading />
+    </div>
   );
 }
 

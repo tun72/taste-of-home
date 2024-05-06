@@ -20,16 +20,16 @@ function HeaderMenu() {
     "chefs",
   ];
 
-  if (location.pathname !== "/home")
-    headerItems = ["recipes", "ingredients", "Asia", "history"];
+  // if (location.pathname !== "/home")
+  //   headerItems = ["recipes", "ingredients", "Asia", "history"];
 
-  headerItems.forEach((item) => console.log(item));
+
   return (
     <StyledHeaderMenu className="desktop-menu-category-list invisible w-0 md:visible md:w-auto">
       {headerItems.map((item) => {
         return <HeaderList item={item} key={item} isHome={location.pathname === "/home"} />;
       })}
-      {location.pathname === "/home" && <DropDrownMenu />}
+      {/* {location.pathname === "/home" && <DropDrownMenu />} */}
     </StyledHeaderMenu>
   );
 }
