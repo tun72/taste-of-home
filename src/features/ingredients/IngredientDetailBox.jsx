@@ -7,7 +7,6 @@ function IngredientDetailBox({
   type = 0,
 }) {
 
-  console.log(description);
   return (
     <>
       {type !== 1 ? (

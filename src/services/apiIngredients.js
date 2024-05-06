@@ -55,7 +55,7 @@ export async function placeOrder({ token, order }) {
 }
 
 export async function addToCart({ id, quantity, token }) {
-  let data = false;
+  let data = [];
   try {
     const result = await fetch(`${URL}/api/ingredients/add-to-cart`, {
       method: "POST",
@@ -65,7 +65,9 @@ export async function addToCart({ id, quantity, token }) {
       },
       body: JSON.stringify({ id, quantity }),
     });
-    data = (await result.json()).message === "success";
+
+    data = await result.json();
+    console.log(data);
   } catch (err) {
     console.log(err);
   }
@@ -115,7 +117,7 @@ export async function deleteCart({ id, status = "", token }) {
   return data;
 }
 
-export async function getHistory({ token, state}) {
+export async function getHistory({ token, state }) {
   let link = URL + "/api/ingredients/get-history?status=" + state;
 
   let query = await fetch(link, {

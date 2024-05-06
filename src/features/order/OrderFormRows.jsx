@@ -11,7 +11,7 @@ import { useOrder } from "./useOrder";
 import Spinner from "../../ui/Spinner";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { URL } from "../../utils/constants";
-import { useCart } from "../../context/CartContext";
+
 import { Link } from "react-router-dom";
 import Confetti from "react-confetti";
 import OrderSuccess from "./OrderSuccess";
@@ -44,12 +44,12 @@ function reducer(state, action) {
 function OrderFormRows() {
   const [orderPage, setOrderPage] = useState(0);
   const { user } = useUser();
-  const { dispatch: dispatch_API } = useCart();
+  // const { dispatch: dispatch_API } = useCart();
 
   const [state, dispatch] = useReducer(reducer, { initialState, ...user });
 
   const { orderNow, isLoading, status, data } = useOrder();
-  const { dispatch: cartDispatch } = useCart();
+  // const { dispatch: cartDispatch } = useCart();
 
   const { name, email, phone, address, city, zipcode, payment } = state;
 
@@ -64,7 +64,7 @@ function OrderFormRows() {
     e.preventDefault();
 
     orderNow({ order: { city, address, zipcode, payment } });
-    cartDispatch({ type: "cart/clear" });
+    // cartDispatch({ type: "cart/clear" });
   }
 
   if (isLoading) {

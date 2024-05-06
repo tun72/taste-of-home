@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
-import { useCart } from "../../context/CartContext";
+// import { useCart } from "../../context/CartContext";
 import { useReducer } from "react";
 import { Button } from "react-scroll";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
@@ -12,23 +12,23 @@ const OrderStyled = styled.div`
 `;
 
 function OrderShortCap() {
-  const { ingredients } = useCart();
+  // const { ingredients } = useCart();
 
-  const quantity = ingredients.reduce((prev, curr) => curr.quantity + prev, 0);
-  const price = ingredients.reduce(
-    (prev, curr) => curr.price * curr.quantity + prev,
-    0,
-  );
+  // const quantity = ingredients.reduce((prev, curr) => curr.quantity + prev, 0);
+  // const price = ingredients.reduce(
+  //   (prev, curr) => curr.price * curr.quantity + prev,
+  //   0,
+  // );
 
-  if(ingredients.length === 0) {
-       return <></>
-  }
-  console.log(ingredients);
+  // if(ingredients.length === 0) {
+  //      return <></>
+  // }
+  // console.log(ingredients);
   return (
     <OrderStyled className="rounded-lg p-5 text-center">
       <div className="flex items-center justify-between">
         <p>
-          {quantity} tems {formatCurrency(price)}
+          {/* {quantity} tems {formatCurrency(price)} */}
         </p>
         <Link className="text-green-400 flex gap-4 items-center" to="/cart">open cart <HiArrowRight /></Link>
       </div>

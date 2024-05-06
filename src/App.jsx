@@ -33,58 +33,56 @@ function App() {
   return (
     <DarkModeProvider>
       <ObserverProvider>
-        <CartProvider>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <GlobalStyles />
-            <BrowserRouter>
-              <Routes>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <GlobalStyles />
+          <BrowserRouter>
+            <Routes>
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="ingredients" element={<Ingredients />}></Route>
+                <Route path="recipes" element={<FoodRecipes />}></Route>
+
+                <Route path="cart" element={<Cart />}></Route>
+                <Route path="order" element={<Order />}></Route>
+                <Route path="profile" element={<Profile />}></Route>
+                <Route path="ingredient/" element={<Ingredients />}></Route>
                 <Route
-                  element={
-                    <ProtectedRoute>
-                      <AppLayout />
-                    </ProtectedRoute>
-                  }
-                >
-                  <Route path="ingredients" element={<Ingredients />}></Route>
-                  <Route path="recipes" element={<FoodRecipes />}></Route>
+                  path="ingredient/:ingredientId"
+                  element={<Ingredient />}
+                ></Route>
+                <Route path="history" element={<History />}></Route>
+              </Route>
 
-                  <Route path="cart" element={<Cart />}></Route>
-                  <Route path="order" element={<Order />}></Route>
-                  <Route path="profile" element={<Profile />}></Route>
-                  <Route path="ingredient/" element={<Ingredients />}></Route>
-                  <Route
-                    path="ingredient/:ingredientId"
-                    element={<Ingredient />}
-                  ></Route>
-                  <Route path="history" element={<History />}></Route>
-                </Route>
-
-                <Route element={<AppLayout />}>
-                  <Route path="home" element={<Home />}></Route>
-                </Route>
-                <Route path="about" element={<About />}></Route>
-                <Route path="contact" element={<Contact />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route index element={<Navigate replace to="home" />}></Route>
-                <Route path="*" element={<PageNotFound />}></Route>
-              </Routes>
-            </BrowserRouter>
-            <Toaster
-              position="top-center"
-              gutter={12}
-              containerStyle={{ margin: "8px" }}
-              toastOptions={{
-                success: { duration: 1000 },
-                error: { duration: 3000 },
-                style: {
-                  fontSize: "16px",
-                  maxWidth: "500px",
-                },
-              }}
-            ></Toaster>
-          </QueryClientProvider>
-        </CartProvider>
+              <Route element={<AppLayout />}>
+                <Route path="home" element={<Home />}></Route>
+              </Route>
+              <Route path="about" element={<About />}></Route>
+              <Route path="contact" element={<Contact />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route index element={<Navigate replace to="home" />}></Route>
+              <Route path="*" element={<PageNotFound />}></Route>
+            </Routes>
+          </BrowserRouter>
+          <Toaster
+            position="top-center"
+            gutter={12}
+            containerStyle={{ margin: "8px" }}
+            toastOptions={{
+              success: { duration: 1000 },
+              error: { duration: 3000 },
+              style: {
+                fontSize: "16px",
+                maxWidth: "500px",
+              },
+            }}
+          ></Toaster>
+        </QueryClientProvider>
       </ObserverProvider>
     </DarkModeProvider>
   );

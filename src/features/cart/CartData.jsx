@@ -1,11 +1,11 @@
-import { useCart } from "../../context/CartContext";
+
 import ButtonOrder from "../../ui/ButtonOrder";
 import CartItem from "./CartItem";
 import Prevoius from "../../ui/Prevoius";
 import { useNavigate } from "react-router-dom";
 import { useDeleteCart } from "./useDeleteCart";
 function CartData() {
-  const { ingredients, dispatch } = useCart();
+
   const navigate = useNavigate();
   const { deleteCart, isLoading } = useDeleteCart();
   function handelOrder() {
@@ -13,21 +13,21 @@ function CartData() {
   
   }
   function handelDelete() {
-    dispatch({ type: "cart/clear" });
+   
     deleteCart({ status: "all" });
   }
   return (
     <div className="">
       <Prevoius> &larr; Back to menu</Prevoius>
 
-      {ingredients.length ? (
+      {0 ? (
         <>
           <h2 className="mt-7 text-[2rem] font-semibold">
             Your cart, Tun Tun Myint
           </h2>
 
           <ul className="mt-3 divide-y divide-stone-200 border-b">
-            {ingredients.map((item) => (
+            {[].map((item) => (
               <CartItem item={item} />
             ))}
           </ul>
