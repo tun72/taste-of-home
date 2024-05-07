@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addToCart,
+  deleteCart,
   fetchCartApi,
   updateCart,
 } from "../../services/apiIngredients";
@@ -62,13 +63,14 @@ const cartSlice = createSlice({
       state.ingredients = state.ingredients.filter(
         (ing) => ing.id !== action.payload,
       );
+      state.isLoading = false;
     },
     increaseIngredient(state, action) {
       const ingredient = state.ingredients.find(
         (ing) => ing.id === action.payload,
       );
       ingredient.quantity++;
-      ingredient.totalPrice = ingredient.quantity * ingredient.unitPrice;
+      ingredient.totalPrice = ingredient.quantity * ingredient.price;
       state.isLoading = false;
     },
     decreaseIngredient(state, action) {
@@ -76,13 +78,14 @@ const cartSlice = createSlice({
         (ing) => ing.id === action.payload,
       );
       ingredient.quantity--;
-      ingredient.totalPrice = ingredient.quantity * ingredient.unitPrice;
+      ingredient.totalPrice = ingredient.quantity * ingredient.price;
       state.isLoading = false;
       if (ingredient.quantity <= 0)
         cartSlice.caseReducers.delete(state, action);
     },
     clearCart(state) {
       state.ingredients = [];
+      state.isLoading = false;
     },
     loading(state) {
       state.isLoading = true;
@@ -106,10 +109,8 @@ const cartSlice = createSlice({
       }),
 });
 
-// thunk async function
+// thunk middleware async function
 export function addIngredient(id = "", quantity) {
-  if (quantity === 0 || id === "") return;
-
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
 
@@ -123,16 +124,31 @@ export function addIngredient(id = "", quantity) {
 }
 
 export function increaseIngredient(id = "", quantity) {
-  if (quantity === 0 || id === "") return;
   return async function (dispatch, getState) {
     await performOperation(dispatch, { id, quantity }, "increaseIngredient");
   };
 }
 
 export function decreaseIngredient(id = "", quantity) {
-  if (quantity === 0 || id === "") return;
   return async function (dispatch, getState) {
     await performOperation(dispatch, { id, quantity }, "decreaseIngredient");
+  };
+}
+
+export function deleteIngredient(id = "") {
+  return async function (dispatch, getState) {
+    dispatch({ type: "cart/loading" });
+    const data = await deleteCart(id);
+    if (data) dispatch({ type: `cart/deleteIngredient`, payload: data });
+  };
+}
+
+export function clearCart() {
+  return async function (dispatch, getState) {
+    dispatch({ type: "cart/loading" });
+    const data = await deleteCart();
+    console.log(data);
+    if (data) dispatch({ type: `cart/clearCart`, payload: data });
   };
 }
 
@@ -142,7 +158,6 @@ export const getCurrentQuantityById = (id) => (state) =>
   state.cart.ingredients.find((ing) => ing.id === id)?.quantity ?? 0;
 
 // actions
-export const { deleteIngredient, clearCart } = cartSlice.actions;
 
 // reducer
 export default cartSlice.reducer;

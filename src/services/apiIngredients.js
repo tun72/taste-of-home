@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useToken as getToken } from "../hooks/useToken";
 import { URL } from "../utils/constants";
 
@@ -77,16 +78,29 @@ export async function addToCart({ id, quantity }) {
   let data = [];
   const { token } = await getToken();
   try {
-    const result = await fetch(`${URL}/api/ingredients/add-to-cart`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ id, quantity }),
-    });
+    // const result = await fetch(`${URL}/api/ingredients/add-to-cart`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   body: JSON.stringify({ id, quantity }),
+    // });
 
-    data = await result.json();
+    const res = await axios.post(
+      `${URL}/api/ingredients/add-to-cart`,
+      { id, quantity },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (res.status !== 200) return null;
+
+    data = await res.data;
     return data.cart;
   } catch (err) {
     console.log(err);
@@ -116,26 +130,32 @@ export async function updateCart({ id, quantity }) {
   return null;
 }
 
-export async function deleteCart({ id, status = "", token }) {
+export async function deleteCart(id = "") {
+  const { token } = await getToken();
   try {
-    const res = await fetch(
-      `${URL}/api/ingredients/delete-cart?status=${status}`,
+    // const res = await fetch(
+    //   `${URL}/api/ingredients/delete-cart/?id=${id}`,
+    //   {
+    //     method: "DELETE",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   },
+    // );
+    const res = await axios.delete(
+      `${URL}/api/ingredients/delete-cart?id=${id}`,
       {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ id }),
+        headers: { Authorization: `Bearer ${token}` },
       },
     );
-    if (!res.ok)
+
+    if (res.status !== 200)
       throw new Error("Increaseing item wrong " + res.status + " got 💥");
-    return id;
+    return id || true;
   } catch (err) {
     console.log(err);
   }
-
   return null;
 }
 

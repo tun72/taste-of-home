@@ -1,11 +1,13 @@
-
+import { useDispatch, useSelector } from "react-redux";
 import ButtonOrder from "../../ui/ButtonOrder";
-import { useDeleteCart } from "./useDeleteCart";
+
+import { deleteIngredient } from "./cartSlice";
 
 function DeleteItemQuantity({ id }) {
-  const { deleteCart, isLoading } = useDeleteCart();
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.cart);
   function handelDelete() {
-    deleteCart({ id });
+    dispatch(deleteIngredient(id));
   }
 
   return (

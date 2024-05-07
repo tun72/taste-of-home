@@ -14,6 +14,7 @@
     "@tanstack/react-query": "^5.8.9",
     "@tanstack/react-query-devtools": "^5.13.5",
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.8",
     "date-fns": "^3.0.0-alpha.2",
     "eslint-config-react-app": "^7.0.1",
     "js-confetti": "^0.12.0",

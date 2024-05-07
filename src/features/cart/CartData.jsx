@@ -2,14 +2,13 @@ import ButtonOrder from "../../ui/ButtonOrder";
 import CartItem from "./CartItem";
 import Prevoius from "../../ui/Prevoius";
 import { useNavigate } from "react-router-dom";
-import { useDeleteCart } from "./useDeleteCart";
-import { useSelector } from "react-redux";
-import Spinner from "../../ui/Spinner";
-import { getCart, getLength } from "./cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import { clearCart, deleteIngredient, getCart, getLength } from "./cartSlice";
 function CartData() {
   const navigate = useNavigate();
-  const { deleteCart, isLoading } = useDeleteCart();
-  const { ingredients, isLoading: cartLoading } = useSelector(getCart);
+  const dispatch = useDispatch();
+  const { ingredients, isLoading } = useSelector(getCart);
   const cartLength = useSelector(getLength);
 
   function handelOrder() {
@@ -17,10 +16,8 @@ function CartData() {
   }
 
   function handelDelete() {
-    deleteCart({ status: "all" });
+    dispatch(clearCart());
   }
-
-  if (cartLoading) return <Spinner />;
 
   if (cartLength <= 0)
     return (
@@ -38,8 +35,8 @@ function CartData() {
       </h2>
 
       <ul className="mt-3 divide-y divide-stone-200 border-b">
-        {ingredients.map((item) => (
-          <CartItem item={item} />
+        {ingredients.map((item, index) => (
+          <CartItem item={item} key={index} />
         ))}
       </ul>
 
