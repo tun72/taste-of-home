@@ -27,7 +27,7 @@ function RecipeByCountry() {
           })}
         </div>
       </div>
-      <div class="categories__endLine mt-4"></div>
+      <div className="categories__endLine mt-4"></div>
     </>
   );
 }

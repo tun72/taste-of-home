@@ -1,9 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addToCart, fetchCartApi } from "../../services/apiIngredients";
+import {
+  addToCart,
+  fetchCartApi,
+  updateCart,
+} from "../../services/apiIngredients";
 
+/////////////////// cartSlice Helper Function /////////////////////////////////////////////////
 
-// { name, price, id, quantity: 1, totalPrice: 1 },
 function getStructureIngredient(ing) {
+  /* 
+ this function destructure ingredients
+ { name, price, id, quantity: 1, totalPrice: 1 }, 
+ */
   let {
     quantity,
     ingredient: { name, price, _id },
@@ -16,6 +24,15 @@ function getStructureIngredient(ing) {
     id: _id,
     totalPrice: quantity * price,
   };
+}
+
+async function performOperation(dispatch, data, type) {
+  /* 
+ this is a unique function for Increase and Decrease Ingredients
+ */
+  dispatch({ type: "cart/loading" });
+  const id = await updateCart(data);
+  if (id) dispatch({ type: `cart/${type}`, payload: id });
 }
 
 const initialState = {
@@ -52,6 +69,7 @@ const cartSlice = createSlice({
       );
       ingredient.quantity++;
       ingredient.totalPrice = ingredient.quantity * ingredient.unitPrice;
+      state.isLoading = false;
     },
     decreaseIngredient(state, action) {
       const ingredient = state.ingredients.find(
@@ -59,7 +77,7 @@ const cartSlice = createSlice({
       );
       ingredient.quantity--;
       ingredient.totalPrice = ingredient.quantity * ingredient.unitPrice;
-
+      state.isLoading = false;
       if (ingredient.quantity <= 0)
         cartSlice.caseReducers.delete(state, action);
     },
@@ -89,8 +107,8 @@ const cartSlice = createSlice({
 });
 
 // thunk async function
-export function addIngredient(id, quantity) {
-  if (quantity === 0 || id === null) return;
+export function addIngredient(id = "", quantity) {
+  if (quantity === 0 || id === "") return;
 
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
@@ -104,18 +122,27 @@ export function addIngredient(id, quantity) {
   };
 }
 
+export function increaseIngredient(id = "", quantity) {
+  if (quantity === 0 || id === "") return;
+  return async function (dispatch, getState) {
+    await performOperation(dispatch, { id, quantity }, "increaseIngredient");
+  };
+}
+
+export function decreaseIngredient(id = "", quantity) {
+  if (quantity === 0 || id === "") return;
+  return async function (dispatch, getState) {
+    await performOperation(dispatch, { id, quantity }, "decreaseIngredient");
+  };
+}
+
 export const getCart = (state) => state.cart;
 export const getLength = (state) => state.cart.ingredients.length;
 export const getCurrentQuantityById = (id) => (state) =>
   state.cart.ingredients.find((ing) => ing.id === id)?.quantity ?? 0;
 
 // actions
-export const {
-  deleteIngredient,
-  increaseIngredient,
-  decreaseIngredient,
-  clearCart,
-} = cartSlice.actions;
+export const { deleteIngredient, clearCart } = cartSlice.actions;
 
 // reducer
 export default cartSlice.reducer;

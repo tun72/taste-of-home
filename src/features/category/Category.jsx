@@ -14,8 +14,8 @@ function Category() {
       <h2 className="sidebar-title bg-green-400">Ingredients</h2>
       <div className="sidebar-category">
         <ul className="flex flex-col gap-5">
-          {categories.map((category) => (
-            <CategoryList item={category} />
+          {categories.map((category, index) => (
+            <CategoryList item={category} key={index} />
           ))}
         </ul>
       </div>

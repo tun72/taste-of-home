@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 
 function DropDrownMenu() {
   return (
-    <li class="menu-category">
-      <a href="rescipeMainpage.html" class="menu-title">
+    <li className="menu-category">
+      <a href="rescipeMainpage.html" className="menu-title">
         Other
       </a>
 
-      <ul class="dropdown-list">
-        <li class="dropdown-item">
+      <ul className="dropdown-list">
+        <li className="dropdown-item">
           <Link to='recipes'>Food recipe</Link>
         </li>
 
-        <li class="dropdown-item">
+        <li className="dropdown-item">
           <Link to="ingredients">Ingredient</Link>
         </li>
       </ul>

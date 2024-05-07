@@ -1,15 +1,17 @@
-import SpinnerMini from "../../ui/SpinnerMini";
 import ButtonOrder from "../../ui/ButtonOrder";
-import { useUpdateCart } from "./useUpdateCart";
+import { useDispatch, useSelector } from "react-redux";
+import { decreaseIngredient, increaseIngredient } from "./cartSlice";
 
 function UpdateItemQuantity({ id, quantity }) {
-  const { updateCart, isLoading } = useUpdateCart();
+  const { isLoading } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   function handelIncrease() {
-    updateCart({ id, quantity: quantity + 1 });
+    dispatch(increaseIngredient(id, quantity + 1));
   }
 
   function handeDelete() {
-    updateCart({ id, quantity: quantity - 1 });
+    dispatch(decreaseIngredient(id, quantity - 1));
   }
 
   return (

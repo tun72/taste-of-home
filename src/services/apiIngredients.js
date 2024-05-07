@@ -95,33 +95,33 @@ export async function addToCart({ id, quantity }) {
   return data;
 }
 
-export async function updateCart({ id, quantity, token }) {
-  let data = false;
+export async function updateCart({ id, quantity }) {
+  const { token } = await getToken();
   try {
-    const result = await fetch(`${URL}/api/ingredients/update-cart`, {
-      method: "post",
+    const res = await fetch(`${URL}/api/ingredients/update-cart`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ id, quantity }),
     });
-    data = (await result.json()).message === "success";
+    if (!res.ok)
+      throw new Error("Increaseing item wrong " + res.status + " got 💥");
+    return id;
   } catch (err) {
     console.log(err);
   }
 
-  return data;
+  return null;
 }
 
 export async function deleteCart({ id, status = "", token }) {
-  let data = false;
-
   try {
-    const result = await fetch(
+    const res = await fetch(
       `${URL}/api/ingredients/delete-cart?status=${status}`,
       {
-        method: "post",
+        method: "delete",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -129,12 +129,14 @@ export async function deleteCart({ id, status = "", token }) {
         body: JSON.stringify({ id }),
       },
     );
-    data = (await result.json()).message === "success";
+    if (!res.ok)
+      throw new Error("Increaseing item wrong " + res.status + " got 💥");
+    return id;
   } catch (err) {
     console.log(err);
   }
 
-  return data;
+  return null;
 }
 
 export async function getHistory({ token, state }) {

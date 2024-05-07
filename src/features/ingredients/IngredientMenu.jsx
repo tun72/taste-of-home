@@ -14,8 +14,8 @@ function IngredientMenu() {
     <>
       {ingredients.length > 0 ? (
         <ul className="divide-y divide-stone-200 px-2">
-          {ingredients.map((ingredient) => (
-            <IngredientMenuList ingredient={ingredient} />
+          {ingredients.map((ingredient, index) => (
+            <IngredientMenuList ingredient={ingredient} key={index} />
           ))}
         </ul>
       ) : (
