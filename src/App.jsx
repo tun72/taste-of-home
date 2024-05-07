@@ -9,7 +9,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import { ObserverProvider } from "./context/ObserverContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { CartProvider } from "./context/CartContext";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Profile from "./pages/Profile";
@@ -20,6 +19,9 @@ import { DarkModeProvider } from "./context/DarkModeContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import History from "./pages/History";
 import FoodRecipes from "./pages/FoodRecipes";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCart } from "./features/cart/cartSlice";
 
 function App() {
   const queryClient = new QueryClient({
@@ -29,6 +31,11 @@ function App() {
       },
     },
   });
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [dispatch]);
 
   return (
     <DarkModeProvider>

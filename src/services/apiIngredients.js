@@ -1,4 +1,4 @@
-import { useToken } from "../hooks/useToken";
+import { useToken as getToken } from "../hooks/useToken";
 import { URL } from "../utils/constants";
 
 export async function getIngredients({ page, search, category }) {
@@ -18,7 +18,7 @@ export async function getIngredients({ page, search, category }) {
 
 export async function getIngredient(id) {
   let link = URL + "/api/ingredients/" + id;
-  console.log(link);
+
   let query = await fetch(link);
   const data = await query.json();
   return data;
@@ -54,8 +54,28 @@ export async function placeOrder({ token, order }) {
   return data;
 }
 
-export async function addToCart({ id, quantity, token }) {
+// THIS PLACE BELONG TO CART
+export async function fetchCartApi() {
   let data = [];
+  const { token } = await getToken();
+  try {
+    const result = await fetch(`${URL}/api/ingredients/cart`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    data = await result.json();
+  } catch (err) {
+    console.log(err);
+  }
+  return data;
+}
+
+export async function addToCart({ id, quantity }) {
+  let data = [];
+  const { token } = await getToken();
   try {
     const result = await fetch(`${URL}/api/ingredients/add-to-cart`, {
       method: "POST",
@@ -67,7 +87,7 @@ export async function addToCart({ id, quantity, token }) {
     });
 
     data = await result.json();
-    console.log(data);
+    return data.cart;
   } catch (err) {
     console.log(err);
   }
