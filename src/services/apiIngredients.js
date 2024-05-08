@@ -120,6 +120,7 @@ export async function updateCart({ id, quantity }) {
       },
       body: JSON.stringify({ id, quantity }),
     });
+    console.log(res);
     if (!res.ok)
       throw new Error("Increaseing item wrong " + res.status + " got 💥");
     return id;

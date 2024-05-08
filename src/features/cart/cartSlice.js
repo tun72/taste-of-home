@@ -33,6 +33,8 @@ async function performOperation(dispatch, data, type) {
  */
   dispatch({ type: "cart/loading" });
   const id = await updateCart(data);
+
+  console.log(id);
   if (id) dispatch({ type: `cart/${type}`, payload: id });
 }
 
@@ -81,7 +83,7 @@ const cartSlice = createSlice({
       ingredient.totalPrice = ingredient.quantity * ingredient.price;
       state.isLoading = false;
       if (ingredient.quantity <= 0)
-        cartSlice.caseReducers.delete(state, action);
+        cartSlice.caseReducers.deleteIngredient(state, action);
     },
     clearCart(state) {
       state.ingredients = [];
@@ -147,7 +149,6 @@ export function clearCart() {
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
     const data = await deleteCart();
-    console.log(data);
     if (data) dispatch({ type: `cart/clearCart`, payload: data });
   };
 }
