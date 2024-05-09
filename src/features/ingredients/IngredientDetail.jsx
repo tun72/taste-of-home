@@ -1,11 +1,8 @@
 import { useIngredient } from "./usegetIngredients";
 import Spinner from "../../ui/Spinner";
 import IngredientDetailBox from "./IngredientDetailBox";
-import Prevoius from "../../ui/Prevoius";
 import IngredientSimilar from "./IngredientSimilar";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+
 
 function IngredientDetail() {
   const { data, isLoading } = useIngredient();

@@ -14,8 +14,8 @@ function Logo() {
   const src = "./icons/logos.png";
   return (
     <StyledLogo>
-      <Link to="/" className="inline-block text-center">
-        <Img src={src} alt="Logo" />
+      <Link to="/" className="text-center flex items-center">
+        <Img src={src} alt="Logo" /> <h1 className="font-mono text-3xl italic text-[#0de39d]">Taste of Home</h1>
       </Link>
     </StyledLogo>
   );

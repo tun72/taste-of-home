@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
+  align-items: center;
   gap: 3rem;
 `;
 
@@ -12,22 +13,20 @@ const StyledHeaderMenu = styled.ul`
 function HeaderMenu() {
   const location = useLocation();
 
-  let headerItems = [
-    "popular food",
-    "services",
-    "most recipe",
-    "reviews",
-    "chefs",
-  ];
-
+  const headerItems = ["recipes", "ingredients", "blogs"];
   // if (location.pathname !== "/home")
   //   headerItems = ["recipes", "ingredients", "Asia", "history"];
-
 
   return (
     <StyledHeaderMenu className="desktop-menu-category-list invisible w-0 md:visible md:w-auto">
       {headerItems.map((item) => {
-        return <HeaderList item={item} key={item} isHome={location.pathname === "/home"} />;
+        return (
+          <HeaderList
+            item={item}
+            key={item}
+            isHome={location.pathname === "/home"}
+          />
+        );
       })}
       {/* {location.pathname === "/home" && <DropDrownMenu />} */}
     </StyledHeaderMenu>
