@@ -5,16 +5,12 @@ const ListStyle = styled.li`
   text-transform: capitalize;
 `;
 
-function HeaderList({ item, isHome }) {
+function HeaderList({ item }) {
   return (
-    <ListStyle className="menu-category">
-      {isHome ? (
-        <a href={`#${item}`} className="menu-title">
-          {item}
-        </a>
-      ) : (
-        <Link to={item}>{item}</Link>
-      )}
+    <ListStyle>
+      <Link to={item} className="hover:text-[#51f5bf] transition-all">
+        {item}
+      </Link>
     </ListStyle>
   );
 }

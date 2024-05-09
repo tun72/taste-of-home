@@ -7,13 +7,15 @@ import ButtonOrder from "./ButtonOrder";
 import { useToken } from "../hooks/useToken";
 
 const StyledHeader = styled.header`
-  width: 100%;
+  width: 85%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  margin-bottom: 2rem;
+  justify-content: space-between;
   padding: 0.6rem;
   z-index: 10;
-
+  margin-right: auto;
+  margin-left: auto;
   ${(props) =>
     props.blur === true &&
     css`

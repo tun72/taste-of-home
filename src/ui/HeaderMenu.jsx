@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import HeaderList from "./HeaderList";
-import DropDrownMenu from "./DropDrownMenu";
 import { useLocation } from "react-router-dom";
 
 const StyledHeaderMenu = styled.ul`
@@ -18,15 +17,9 @@ function HeaderMenu() {
   //   headerItems = ["recipes", "ingredients", "Asia", "history"];
 
   return (
-    <StyledHeaderMenu className="desktop-menu-category-list invisible w-0 md:visible md:w-auto">
+    <StyledHeaderMenu className="invisible w-0 md:visible md:w-auto before:h-2 before:w-[2rem] before:bg-green-300 before:absolute before:bottom-0">
       {headerItems.map((item) => {
-        return (
-          <HeaderList
-            item={item}
-            key={item}
-            isHome={location.pathname === "/home"}
-          />
-        );
+        return <HeaderList item={item} key={item} />;
       })}
       {/* {location.pathname === "/home" && <DropDrownMenu />} */}
     </StyledHeaderMenu>
