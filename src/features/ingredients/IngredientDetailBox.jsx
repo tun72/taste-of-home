@@ -1,12 +1,14 @@
+import { useSelector } from "react-redux";
 import AddToCart from "../../ui/AddToCart";
 import DetailInfo from "../../ui/DetailInfo";
 import Rating from "../../ui/Rating";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function IngredientDetailBox({
   data: { name, price, _id, category, description, imageUrl, rating, quantity },
   type = 0,
 }) {
-
   return (
     <>
       {type !== 1 ? (

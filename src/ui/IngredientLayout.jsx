@@ -3,10 +3,10 @@ import IngredientDiscount from "../features/ingredients/IngredientDiscount";
 
 function IngredientLayout({ children }) {
   return (
-    <div className="relative mx-auto  grid max-w-[130rem] grid-cols-[auto_1fr] items-start gap-[6rem]">
+    <div className="relative mx-auto  grid lg:max-w-[82%] md:max-w-[82%] max-w-[90%] lg:grid-cols-[auto_1fr]  grid-cols-1 items-start lg:gap-[6rem] gap-[1rem]">
       <Category />
       {children}
-      <IngredientDiscount />
+      {/* <IngredientDiscount /> */}
     </div>
   );
 }

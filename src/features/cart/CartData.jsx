@@ -8,7 +8,7 @@ import { clearCart, deleteIngredient, getCart, getLength } from "./cartSlice";
 function CartData() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { ingredients, isLoading } = useSelector(getCart);
+  const { ingredients, isLoading,} = useSelector(getCart);
   const cartLength = useSelector(getLength);
 
   function handelOrder() {

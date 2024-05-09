@@ -37,6 +37,7 @@ function App() {
     dispatch(fetchCart());
   }, [dispatch]);
 
+
   return (
     <DarkModeProvider>
       <ObserverProvider>

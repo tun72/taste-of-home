@@ -25,6 +25,7 @@ const StyledAppLayout = styled.div`
 function AppLayout() {
   const location = useLocation();
 
+
   return (
     <StyledAppLayout isHome={location.pathname === "/home"}>
       <Header ishome={location.pathname === "/home"} />

@@ -17,6 +17,7 @@ function AddToCart({ id }) {
   function handelAdd() {
     dispatch(addIngredient(id, 1));
   }
+
   return (
     <>
       {isIncart && (

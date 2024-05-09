@@ -5,9 +5,9 @@ import {
   fetchCartApi,
   updateCart,
 } from "../../services/apiIngredients";
+import toast from "react-hot-toast";
 
 /////////////////// cartSlice Helper Function /////////////////////////////////////////////////
-
 function getStructureIngredient(ing) {
   /* 
  this function destructure ingredients
@@ -31,13 +31,18 @@ async function performOperation(dispatch, data, type) {
   /* 
  this is a unique function for Increase and Decrease Ingredients
  */
-  dispatch({ type: "cart/loading" });
-  const id = await updateCart(data);
-
-  console.log(id);
-  if (id) dispatch({ type: `cart/${type}`, payload: id });
+  try {
+    dispatch({ type: "cart/loading" });
+    const id = await updateCart(data);
+    if (id) dispatch({ type: `cart/${type}`, payload: id });
+  } catch (e) {
+    dispatch({ type: "cart/error", payload: e.message });
+    toast.error(e.message);
+  }
 }
+/////////////////////////////////////////////////////////////////////////////////////
 
+// initial state
 const initialState = {
   ingredients: [],
   isLoading: false,
@@ -59,7 +64,6 @@ const cartSlice = createSlice({
       state.ingredients.push(action.payload);
       state.isLoading = false;
       state.error = "";
-      // console.log(state.ingredients);
     },
     deleteIngredient(state, action) {
       state.ingredients = state.ingredients.filter(
@@ -92,6 +96,10 @@ const cartSlice = createSlice({
     loading(state) {
       state.isLoading = true;
     },
+    error(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -111,17 +119,20 @@ const cartSlice = createSlice({
       }),
 });
 
-// thunk middleware async function
+// thunk middleware async functions
 export function addIngredient(id = "", quantity) {
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
-
-    const cart = await addToCart({ id, quantity });
-
-    dispatch({
-      type: "cart/addIngredient",
-      payload: getStructureIngredient(cart),
-    });
+    try {
+      const cart = await addToCart({ id, quantity });
+      dispatch({
+        type: "cart/addIngredient",
+        payload: getStructureIngredient(cart),
+      });
+    } catch (e) {
+      dispatch({ type: "cart/error", payload: e.message });
+      toast.error(e.message);
+    }
   };
 }
 
@@ -140,25 +151,34 @@ export function decreaseIngredient(id = "", quantity) {
 export function deleteIngredient(id = "") {
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
-    const data = await deleteCart(id);
-    if (data) dispatch({ type: `cart/deleteIngredient`, payload: data });
+    try {
+      const data = await deleteCart(id);
+      if (data) dispatch({ type: `cart/deleteIngredient`, payload: data });
+    } catch (e) {
+      dispatch({ type: "cart/error", payload: e.message });
+      toast.error(e.message);
+    }
   };
 }
 
 export function clearCart() {
   return async function (dispatch, getState) {
     dispatch({ type: "cart/loading" });
-    const data = await deleteCart();
-    if (data) dispatch({ type: `cart/clearCart`, payload: data });
+    try {
+      const data = await deleteCart();
+      if (data) dispatch({ type: `cart/clearCart`, payload: data });
+    } catch (e) {
+      dispatch({ type: "cart/error", payload: e.message });
+      toast.error(e.message);
+    }
   };
 }
 
+// useful helper functions
 export const getCart = (state) => state.cart;
 export const getLength = (state) => state.cart.ingredients.length;
 export const getCurrentQuantityById = (id) => (state) =>
   state.cart.ingredients.find((ing) => ing.id === id)?.quantity ?? 0;
-
-// actions
 
 // reducer
 export default cartSlice.reducer;

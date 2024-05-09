@@ -3,13 +3,28 @@ import Spinner from "../../ui/Spinner";
 import IngredientDetailBox from "./IngredientDetailBox";
 import Prevoius from "../../ui/Prevoius";
 import IngredientSimilar from "./IngredientSimilar";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function IngredientDetail() {
   const { data, isLoading } = useIngredient();
 
+  // const { error } = useSelector((state) => state.cart);
+
+  // console.log(error);
+  // useEffect(() => {
+  //   console.log(error);
+  //   if (error) {
+  //     toast.error(error);
+  //   }
+  // }, [error]);
+
+
   if (isLoading) return <Spinner />;
 
   const { imageUrl, name } = data;
+
 
   return (
     <>
