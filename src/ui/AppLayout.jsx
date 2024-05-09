@@ -4,11 +4,11 @@ import { Outlet, useLocation } from "react-router-dom";
 
 const Main = styled.main`
   overflow-y: scroll;
-  ${(props) =>
+  ${'' /* ${(props) =>
     props.isHome &&
     css`
       background: #f8f8f8 !important;
-    `}
+    `} */}
 `;
 const StyledAppLayout = styled.div`
   display: grid;
@@ -27,9 +27,9 @@ function AppLayout() {
 
 
   return (
-    <StyledAppLayout isHome={location.pathname === "/home"}>
-      <Header ishome={location.pathname === "/home"} />
-      <Main isHome={location.pathname === "/home"}>
+    <StyledAppLayout isHome={location.pathname === "/home" ? "true" : ""}>
+      <Header ishome={location.pathname === "/home" ? "true" : ""} />
+      <Main>
         <Outlet />
       </Main>
     </StyledAppLayout>

@@ -25,8 +25,9 @@ function HeaderOptions() {
   return (
     <StyledHeaderOption>
       <CartHeader />
-      <UserAvatar name={name} />
       <DarkModeToggle />
+
+      <UserAvatar name={name} />
       <Logout />
     </StyledHeaderOption>
   );
