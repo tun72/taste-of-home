@@ -1,10 +1,7 @@
-import { useCategory } from "./useCategory";
-import CategoryList from "./CategoryList";
 import { HiArrowDownCircle } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 
-function Category() {
-  const { data, isLoading } = useCategory();
+function Category({ children }) {
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
@@ -23,9 +20,6 @@ function Category() {
     if (window.innerWidth < 1000) setIsOpen((prev) => !prev);
   }
 
-  if (isLoading) return <div></div>;
-  const categories = ["all", ...data];
-
   return (
     <div
       className="has-scrollbar static w-[100%] md:w-[50%] lg:sticky lg:w-[35rem]"
@@ -39,17 +33,7 @@ function Category() {
         <HiArrowDownCircle className="cursor-pointer text-3xl" />
       </h2>
 
-      {isOpen && (
-        <div className="sidebar-category">
-          <ul className="flex flex-col gap-5">
-            {categories.map((category, index) => (
-              <CategoryList item={category} key={index} />
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* <OrderShortCap /> */}
+      {isOpen && <div className="sidebar-category">{children}</div>}
     </div>
   );
 }

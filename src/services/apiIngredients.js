@@ -41,7 +41,7 @@ export async function getCategory() {
 
   const data = await query.json();
 
-  return data.category;
+  return ["all", ...data.category];
 }
 
 export async function placeOrder({ token, order }) {

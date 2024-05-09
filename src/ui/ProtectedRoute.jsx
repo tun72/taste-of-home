@@ -26,12 +26,12 @@ function ProtectedRoute({ children }) {
 
   // 2. while loading, show spinner,
 
-  if (isLoading)
-    return (
-      <FullPage>
-        <Spinner />
-      </FullPage>
-    );
+  // if (isLoading)
+  //   return (
+  //     <FullPage>
+  //       <Spinner />
+  //     </FullPage>
+  //   );
   if (isAuthenticated)
     // 4. If auth user render the app
     return children;

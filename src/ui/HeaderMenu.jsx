@@ -17,7 +17,7 @@ function HeaderMenu() {
   //   headerItems = ["recipes", "ingredients", "Asia", "history"];
 
   return (
-    <StyledHeaderMenu className="invisible w-0 md:visible md:w-auto before:h-2 before:w-[2rem] before:bg-green-300 before:absolute before:bottom-0">
+    <StyledHeaderMenu className="invisible w-0 md:visible md:w-auto ">
       {headerItems.map((item) => {
         return <HeaderList item={item} key={item} />;
       })}

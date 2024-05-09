@@ -204,6 +204,11 @@ img {
             height: 2.3rem;
             background-color: #fff;
         } 
+  
+  .active {
+    color: #51f5bf;
+  }
+  
   `;
 
 export default GlobalStyles;
