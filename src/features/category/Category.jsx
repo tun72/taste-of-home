@@ -1,26 +1,42 @@
 import { useCategory } from "./useCategory";
 import CategoryList from "./CategoryList";
 import { HiArrowDownCircle } from "react-icons/hi2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Category() {
-  const { data, isLoading} = useCategory();
-  const [isOpen, setIsOpen] = useState(false);
+  const { data, isLoading } = useCategory();
+  const [isOpen, setIsOpen] = useState(true);
 
-  if (isLoading) return <div></div>;
-
-  const categories = ["all", ...data];
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1000) setIsOpen(false);
+      if (window.innerWidth > 1000) setIsOpen(true);
+    };
+    window.addEventListener("resize", handleResize);
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function handelCategoryOpen() {
-    setIsOpen((prev) => !prev);
+    if (window.innerWidth < 1000) setIsOpen((prev) => !prev);
   }
+
+  if (isLoading) return <div></div>;
+  const categories = ["all", ...data];
+
   return (
-    <div className="lg:sticky static has-scrollbar lg:w-[35rem] md:w-[50%] w-[100%]" data-mobile-menu>
-      <h2 className="p-[1.2rem] mb-[1.2rem] text-white rounded-[1rem] bg-[#0de39d] flex items-center justify-between  select-none" onClick={handelCategoryOpen}>
+    <div
+      className="has-scrollbar static w-[100%] md:w-[50%] lg:sticky lg:w-[35rem]"
+      data-mobile-menu
+    >
+      <h2
+        className="mb-[1.2rem] flex select-none items-center justify-between rounded-[1rem] bg-[#0de39d] p-[1.2rem]  text-white"
+        onClick={handelCategoryOpen}
+      >
         Categories
-        <HiArrowDownCircle
-          className="cursor-pointer text-3xl"
-        />
+        <HiArrowDownCircle className="cursor-pointer text-3xl" />
       </h2>
 
       {isOpen && (
