@@ -17,7 +17,6 @@ export function useIngredients() {
   const count = data?.total;
   const pageCount = Math.ceil(count / PAGE_SIZE);
   if (page < pageCount) {
-    console.log(page + "Counted");
     queryClient.prefetchQuery({
       queryKey: ["ingredients", page + 1],
       queryFn: () => getIngredients({ page: page + 1 }),

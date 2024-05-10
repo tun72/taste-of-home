@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import Input from "./Input";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
 const StyledSearchForm = styled.form`
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-grey-300);
   background-color: var(--color-grey-0);
-
   min-width: 50rem;
   width: 50rem;
   height: 45px;

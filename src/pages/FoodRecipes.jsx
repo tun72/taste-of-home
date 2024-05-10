@@ -1,12 +1,14 @@
-import Recipe from "../features/Recipes/Recipe"
-import RecipesLayout from "../ui/RecipesLayout"
+import Recipe from "../features/Recipes/Recipe";
+import RecipeByCountry from "../features/Recipes/RecipeByCountry";
+import RecipesLayout from "../ui/RecipesLayout";
 
 function FoodRecipes() {
-    return (
-        <RecipesLayout>
-            <Recipe />
-        </RecipesLayout>
-    )
+  return (
+    <RecipesLayout>
+      <RecipeByCountry />
+      <Recipe />
+    </RecipesLayout>
+  );
 }
 
-export default FoodRecipes
+export default FoodRecipes;

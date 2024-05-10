@@ -15,26 +15,26 @@ function CategoryList({ item }) {
     setSearchParams(searchParams);
   }
   return (
-    <li className="sidebar-menu-category">
+    <li>
       <button
-        className="sidebar-accordion-menu"
+        className="w-full flex justify-between items-center"
         onClick={() => {
           handelCategory(item);
         }}
       >
-        <div className="menu-title-flex">
+        <div className="flex items-center gap-2">
           <img
             src={`./icons/${item}.svg`}
             alt={`ingredients_${item}`}
-            width="20"
-            height="20"
-            className="menu-title-img"
+            width="30"
+            height="30"
+            className=""
           />
 
-          <p className="menu-title category-items">{item}</p>
+          <p className="text-[1.6rem]">{item}</p>
         </div>
         <div>
-          <HiArrowRightCircle className="text-[1.8rem]" />
+          <HiArrowRightCircle className="text-[2rem]" />
         </div>
       </button>
     </li>

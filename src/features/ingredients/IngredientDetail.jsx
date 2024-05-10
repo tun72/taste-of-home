@@ -7,16 +7,6 @@ import IngredientSimilar from "./IngredientSimilar";
 function IngredientDetail() {
   const { data, isLoading } = useIngredient();
 
-  // const { error } = useSelector((state) => state.cart);
-
-  // console.log(error);
-  // useEffect(() => {
-  //   console.log(error);
-  //   if (error) {
-  //     toast.error(error);
-  //   }
-  // }, [error]);
-
 
   if (isLoading) return <Spinner />;
 

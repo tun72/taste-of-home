@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getReciepe } from "../../services/apiRecipe";
+import { getReciepes } from "../../services/apiRecipe";
 
-export function useRecipe() {
-  const { data: recipes, isLoading } = useQuery({
-    queryFn: getReciepe,
-    queryKey: ["recipe"],
+
+export function useRecipe({ country }) {
+  const { data, isLoading } = useQuery({
+    queryFn: () => getReciepes({ country }),
+    queryKey: ["recipe", country],
   });
 
-  console.log(recipes);
-  return { recipes, isLoading };
+  return { data, isLoading };
 }

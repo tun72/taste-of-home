@@ -1,10 +1,16 @@
-export async function getReciepe() {
-  console.log("Hello");
-  const link = "https://www.themealdb.com/api/json/v1/1/list.php?a=list";
+export async function getReciepes({ country }) {
+  const link = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`;
   const request = await fetch(link);
   const data = await request.json();
-  console.log(data);
-  return data;
+
+  return data.meals;
+}
+
+export async function getCategory() {
+  const link = "https://www.themealdb.com/api/json/v1/1/list.php?c=list";
+  const request = await fetch(link);
+  const data = await request.json();
+  return data.meals;
 }
 
 export async function getCountry() {
