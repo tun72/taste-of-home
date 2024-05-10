@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import SkeletonLoding from "../../ui/SkeletonLoding";
 import { useCountry } from "./useCountry";
+import SearchForm from "../../ui/SearchForm";
+import Heading from "../../ui/Heading";
+
+const StyleLayout = styled.div``;
+const StyledHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const CountryLayout = styled.div`
   user-select: none;
@@ -36,9 +45,14 @@ export default function RecipeByCountry() {
   }
 
   let countries = country.slice(99, 110);
-  console.log(countries);
+
   return (
-    <>
+    <StyleLayout>
+      <StyledHeader>
+        <Heading as={"h1"}>Search By Country</Heading>
+        <SearchForm />
+      </StyledHeader>
+
       <CountryLayout className="categories__slider">
         {countries.map(({ denName, flags, name }) => {
           return (
@@ -48,14 +62,14 @@ export default function RecipeByCountry() {
                 alt=""
                 className="pointer-events-none h-[3rem] w-[3rem]"
               />
-              <p className="pointer-events-none mt-[1rem] text-2xl text-black">
+              <p className="pointer-events-none mt-[1rem] line-clamp-1 text-2xl text-black">
                 {name.common}
               </p>
             </Country>
           );
         })}
       </CountryLayout>
-      <div className="categories__endLine mt-4"></div>
-    </>
+      {/* <div className="categories__endLine mt-4"></div> */}
+    </StyleLayout>
   );
 }
