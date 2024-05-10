@@ -51,9 +51,9 @@ const Country = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 5.7%;
+  flex: 0 0 7.5%;
   flex-direction: column;
-  height: 10rem;
+  height: 8rem;
   border-radius: 1.2rem;
   border: 0 solid #5ff0d0;
   box-shadow: 1px 1px 5px #00000040;
@@ -63,7 +63,7 @@ const Country = styled.div`
 export default function RecipeByCountry() {
   const { country, isLoading } = useCountry();
 
-  if (isLoading) return <div></div>;
+  if (isLoading) return <SkeletonLoding />;
 
   return (
     <StyleLayout>
