@@ -7,7 +7,5 @@ export function useCountry() {
     queryKey: ["country"],
   });
 
- 
-
   return { country, isLoading };
 }
