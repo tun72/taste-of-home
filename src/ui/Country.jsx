@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const CountryLayout = styled.div`
   user-select: none;
   display: flex;
-  width: 100%;
+  width: 80vw;
   overflow-x: scroll;
   gap: 2.5rem;
   transition: all 0.5s;

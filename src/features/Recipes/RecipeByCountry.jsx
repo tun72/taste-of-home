@@ -6,12 +6,16 @@ import UnderLine from "../../ui/Underline";
 import { Country, CountryLayout } from "../../ui/Country";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useDeleteAllQuery } from "../../hooks/useDeleteAllQuery";
 
 const StyleLayout = styled.div`
   margin-top: 1rem;
   display: flex;
+  position: relative;
   flex-direction: column;
+  justify-content: start;
   gap: 1.5rem;
+  overflow: hidden;
 `;
 const StyledHeader = styled.div`
   display: flex;
@@ -23,20 +27,16 @@ export default function RecipeByCountry() {
   const { country, isLoading } = useCountry();
 
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [currentCountry, setCurrentCountry] = useState(
     searchParams.get("country"),
   );
 
+  const { setParam } = useDeleteAllQuery({ searchParams, setSearchParams });
+
   function handelCountry(country) {
-    const page = searchParams.get("page");
-    const search = searchParams.get("search");
-    if (page || search) {
-      searchParams.delete("page");
-      searchParams.delete("search");
-    }
-    searchParams.set("country", country);
-    setCurrentCountry(country);
-    setSearchParams(searchParams);
+    setParam({ name: "country", value: country });
+    setCurrentCountry((prev) => country);
   }
 
   return (
@@ -54,7 +54,9 @@ export default function RecipeByCountry() {
             return (
               <Country
                 key={data?.name?.common}
-                isactive={currentCountry === data?.demonyms?.eng?.f ? "true" : ""}
+                isactive={
+                  currentCountry === data?.demonyms?.eng?.f ? "true" : ""
+                }
                 onClick={(e) => {
                   handelCountry(data?.demonyms?.eng?.f);
                 }}

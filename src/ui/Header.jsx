@@ -7,15 +7,9 @@ import ButtonOrder from "./ButtonOrder";
 import { useToken } from "../hooks/useToken";
 
 const StyledHeader = styled.header`
-  width: 85%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
-  justify-content: space-between;
-  padding: 0.6rem;
+  width: 100%;
   z-index: 10;
-  margin-right: auto;
-  margin-left: auto;
+  /* background-color: green; */
   ${(props) =>
     props.blur === true &&
     css`
@@ -29,21 +23,31 @@ const StyledHeader = styled.header`
     `}
 `;
 
+const StyledNav = styled.nav`
+  width: 86%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+ 
+`;
 function Header({ ishome }) {
   const { isIntersecting } = useObserver();
   const { token } = useToken();
 
   return (
     <StyledHeader blur={ishome && isIntersecting} isHome={ishome}>
-      <Logo />
-      <HeaderMenu />
-      {!token ? (
-        <ButtonOrder type="secondary" to="/login">
-          Login Now
-        </ButtonOrder>
-      ) : (
-        <HeaderOptions />
-      )}
+      <StyledNav>
+        <Logo />
+        <HeaderMenu />
+        {!token ? (
+          <ButtonOrder type="secondary" to="/login">
+            Login Now
+          </ButtonOrder>
+        ) : (
+          <HeaderOptions />
+        )}
+      </StyledNav>
     </StyledHeader>
   );
 }

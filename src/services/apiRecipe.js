@@ -1,5 +1,14 @@
-export async function getReciepes({ country }) {
-  const link = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`;
+export async function getReciepes({ country, category, search }) {
+  let link = null;
+  if (country)
+    link = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`;
+  else if (category)
+    link = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+  else if (search)
+    link = `https://www.themealdb.com/api/json/v1/1/filter.php?s=${search}`;
+
+  if (!link) return null;
+
   const request = await fetch(link);
   const data = await request.json();
 

@@ -1,5 +1,4 @@
 import React from "react";
-import Heading from "../../ui/Heading";
 import { HiStar } from "react-icons/hi2";
 export default function RecipeList({ name, image, id }) {
   return (

@@ -128,6 +128,8 @@ body {
   overflow: hidden;
 }
 
+
+
 input,
 button,
 textarea,
@@ -189,14 +191,7 @@ img {
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
-::-webkit-progress-bar {
-    background-color: var( --color-grey-100);
-    border-radius: 100px;
-  }
-  ::-webkit-progress-value {
-    background-color: var( --color-brand-500);
-    border-radius: 100px;
-  }
+
 
   input[type=radio] { 
             accent-color: var(--color-brand-500); 

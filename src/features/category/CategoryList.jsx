@@ -1,23 +1,18 @@
 import { HiArrowRightCircle } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
+import { useDeleteAllQuery } from "../../hooks/useDeleteAllQuery";
 
 function CategoryList({ item }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { setParam } = useDeleteAllQuery({ searchParams, setSearchParams });
 
   function handelCategory(category) {
-    const page = searchParams.get("page");
-    const search = searchParams.get("search");
-    if (page || search) {
-      searchParams.delete("page");
-      searchParams.delete("search");
-    }
-    searchParams.set("category", category);
-    setSearchParams(searchParams);
+    setParam({ name: "category", value: category });
   }
   return (
     <li>
       <button
-        className="w-full flex justify-between items-center"
+        className="flex w-full items-center justify-between"
         onClick={() => {
           handelCategory(item);
         }}

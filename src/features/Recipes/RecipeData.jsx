@@ -3,8 +3,8 @@ import { useRecipe } from "./useRecipe";
 import Spinner from "../../ui/Spinner";
 import RecipeList from "./RecipeList";
 
-export default function RecipeData({ country }) {
-  const { data, isLoading } = useRecipe({ country });
+export default function RecipeData({ country, category }) {
+  const { data, isLoading } = useRecipe({ country, category });
 
   if (isLoading)
     return (
@@ -13,7 +13,7 @@ export default function RecipeData({ country }) {
       </div>
     );
   return (
-    <ul className="grid grid-cols-4 justify-center gap-[4rem] pt-[2rem]">
+    <ul className="grid lg:grid-cols-3 md:grid-cols-3 justify-center gap-[4rem] pt-[2rem]">
       {data.map((recipe) => (
         <RecipeList
           key={recipe.idMeal}

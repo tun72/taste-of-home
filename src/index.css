@@ -2,4 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+body::-webkit-scrollbar {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+}
 
+body::-webkit-scrollbar-track {
+  background: transprant;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--color-brand-500);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-500);
+}

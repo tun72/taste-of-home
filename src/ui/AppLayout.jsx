@@ -4,11 +4,33 @@ import { Outlet, useLocation } from "react-router-dom";
 
 const Main = styled.main`
   overflow-y: scroll;
-  ${'' /* ${(props) =>
+  ${
+    "" /* ${(props) =>
     props.isHome &&
     css`
       background: #f8f8f8 !important;
-    `} */}
+    `} */
+  }
+
+  &::-webkit-scrollbar {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transprant;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transprant;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-500);
+  }
 `;
 const StyledAppLayout = styled.div`
   display: grid;
@@ -24,7 +46,6 @@ const StyledAppLayout = styled.div`
 
 function AppLayout() {
   const location = useLocation();
-
 
   return (
     <StyledAppLayout isHome={location.pathname === "/home" ? "true" : ""}>

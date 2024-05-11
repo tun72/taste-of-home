@@ -7,8 +7,9 @@ import RecipeData from "./RecipeData";
 export default function RecipeItem() {
   const [searchParams] = useSearchParams();
   const country = searchParams.get("country");
+  const category = searchParams.get("category");
 
-  if (!country)
+  if (!country && !category)
     return (
       <div className="flex h-[90%] w-[100%] items-center justify-center ">
         <h4 className="text-[2.6rem] leading-[4rem] tracking-[0.2rem]">
@@ -17,5 +18,5 @@ export default function RecipeItem() {
         </h4>
       </div>
     );
-  return <RecipeData country={country} />;
+  return <RecipeData country={country} category={category} />;
 }
