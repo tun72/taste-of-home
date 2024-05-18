@@ -1,6 +1,7 @@
 import React from "react";
 import { HiStar } from "react-icons/hi2";
 import Modal from "../../ui/Model";
+import RecipeMarkup from "./RecipeMarkup";
 export default function RecipeList({ name, image, id }) {
   return (
     <li className="group flex w-[250px] cursor-pointer flex-col">
@@ -25,7 +26,7 @@ export default function RecipeList({ name, image, id }) {
           </div>
         </Modal.Open>
         <Modal.Window name="detail">
-          <p>Hello</p>
+          <RecipeMarkup id={id} />
         </Modal.Window>
       </Modal>
     </li>

@@ -12,8 +12,29 @@ const StyledModal = styled.div`
   background-color: var(--color-grey-0);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: 3.2rem 4rem;
   transition: all 0.5s;
+  overflow-y: scroll;
+  width: 60rem;
+  height: 60rem;
+
+  &::-webkit-scrollbar {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transprant;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-brand-500);
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+  }
 `;
 
 const Overlay = styled.div`
@@ -29,7 +50,7 @@ const Overlay = styled.div`
 `;
 
 const Button = styled.button`
-  background: none;
+  background: green;
   border: none;
   padding: 0.4rem;
   border-radius: var(--border-radius-sm);
@@ -38,6 +59,7 @@ const Button = styled.button`
   position: absolute;
   top: 1.2rem;
   right: 1.9rem;
+  z-index: 1001;
 
   &:hover {
     background-color: var(--color-grey-100);

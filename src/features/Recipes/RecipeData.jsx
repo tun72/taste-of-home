@@ -12,6 +12,8 @@ export default function RecipeData({ country, category }) {
         <Spinner />
       </div>
     );
+
+    console.log(data);
   return (
     <ul className="grid 2xl:grid-cols-4 lg:grid-cols-3 justify-center gap-[4rem] pt-[2rem]">
       {data.map((recipe) => (
