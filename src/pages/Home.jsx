@@ -7,7 +7,7 @@ import ChefSection from "../ui/ChefSection";
 import HomeFooter from "../ui/HomeFooter";
 function Home() {
   return (
-    <>
+    <section className="h-[100vh] w-full overflow-y-scroll">
       <HeroSection />
       <PopularSection />
       <ServiceSection />
@@ -15,7 +15,7 @@ function Home() {
       <CustomerReviewSection />
       <ChefSection />
       <HomeFooter />
-    </>
+    </section>
   );
 }
 

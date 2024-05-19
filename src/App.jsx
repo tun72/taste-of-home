@@ -37,7 +37,6 @@ function App() {
     dispatch(fetchCart());
   }, [dispatch]);
 
-
   return (
     <DarkModeProvider>
       <ObserverProvider>
@@ -67,13 +66,12 @@ function App() {
                 <Route path="history" element={<History />}></Route>
               </Route>
 
-              <Route element={<AppLayout />}>
-                <Route path="home" element={<Home />}></Route>
-              </Route>
+              <Route path="/" element={<Home />}></Route>
+
               <Route path="about" element={<About />}></Route>
               <Route path="contact" element={<Contact />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              <Route index element={<Navigate replace to="home" />}></Route>
+           
               <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
           </BrowserRouter>

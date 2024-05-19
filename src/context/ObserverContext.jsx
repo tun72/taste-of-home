@@ -19,7 +19,6 @@ function ObserverProvider({ children }) {
 
 function useObserver() {
   const context = useContext(ObserverContext);
-
   if (context === undefined)
     throw new Error("ObserverContext are use outside of the ObserverProvider");
   return context;
