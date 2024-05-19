@@ -35,7 +35,9 @@ export default function RecipeMarkup({ id }) {
   console.log(ingredients);
 
   ingredients = ingredients.filter(
-    (ing) => ing?.measure?.trim() !== "" || ing?.name?.trim() !== "",
+    (ing) =>
+      ![null, ""].includes(ing?.measure?.trim()) ||
+      ![null, ""].includes(ing?.name?.trim()),
   );
 
   console.log(ingredients);
