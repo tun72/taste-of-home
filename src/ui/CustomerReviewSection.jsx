@@ -9,48 +9,54 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useState } from "react";
 import ReviewSlide from "./ReviewSlide";
+import Heading from "./Heading";
 
 function CustomerReviewSection() {
   const [setSwiperRef] = useState(null);
+  const users = [
+    {
+      name: "Emily",
+    },
+    {
+      name: "Rock Ricky",
+    },
+    {
+      name: "Morty Smith",
+    },
+    {
+      name: "Rick",
+    },
+    {
+      name: "Alex",
+    },
+  ];
   return (
-    <section
-      className="section-customer  w-full px-[7rem] py-[8rem]"
-      id="reviews"
-    >
-      <div className="customer">
-        <div className="customer__header">
-          <h2 className="secondary__heading">Customer Review</h2>
+    <section className="w-full  p-[8rem_7rem_8rem_7rem]" id="reviews">
+      <div className="mx-auto mb-[2rem] max-w-[80%]">
+        <div className="mb-[10rem]">
+          <Heading type="secondary">Customer Review</Heading>
         </div>
 
-        <div className="customer__body">
-          <Swiper
-            modules={[Virtual, Navigation, Pagination]}
-            onSwiper={setSwiperRef}
-            slidesPerView={3}
-            centeredSlides={true}
-            spaceBetween={30}
-            pagination={true}
-            className="overflow-x-clip"
-            initialSlide={1}
-            virtual
-          >
-            <SwiperSlide>
-              <ReviewSlide name={"Tun Tun Myint"} comment={"lorem ipsum"} />
+        <Swiper
+          modules={[Virtual, Navigation, Pagination]}
+          onSwiper={setSwiperRef}
+          slidesPerView={3}
+          centeredSlides={true}
+          spaceBetween={50}
+          pagination={true}
+          className="overflow-x-clip"
+          initialSlide={1}
+          virtual
+        >
+          {users.map((user) => (
+            <SwiperSlide
+              className="mb-[5rem] p-[2rem] shadow-xl rounded-md cursor-pointer"
+              key={user.name}
+            >
+              <ReviewSlide name={user.name} />
             </SwiperSlide>
-            <SwiperSlide>
-              <ReviewSlide name={"Tun Tun Myint"} comment={"lorem ipsum"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ReviewSlide name={"Tun Tun Myint"} comment={"lorem ipsum"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ReviewSlide name={"Tun Tun Myint"} comment={"lorem ipsum"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ReviewSlide name={"Tun Tun Myint"} comment={"lorem ipsum"} />
-            </SwiperSlide>
-          </Swiper>
-        </div>
+          ))}
+        </Swiper>
       </div>
     </section>
   );

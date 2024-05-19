@@ -1,54 +1,125 @@
+import styled, { css } from "styled-components";
+import Heading from "./Heading";
 
+const LeftFeatureIcon = styled.div`
+  flex: 0 0 18rem;
+  height: 18rem;
+  background: #0de39d;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+`;
 
+const RightFeatureIcon = styled.div`
+  padding: 0 2rem;
+  background: #0de39d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 36rem;
+  border-radius: 10px;
+  color: white;
+`;
+
+const FeatureLabel = styled.div`
+  flex: auto;
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #590c79;
+  font-weight: 600;
+`;
+
+const Arrow = styled.span`
+  width: 23vw;
+  height: 2px;
+  background: #590c79;
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  transform: translateY(-50%);
+
+  ${(props) =>
+    props.type === "right" &&
+    css`
+      left: 0;
+    `}
+
+  ${(props) =>
+    props.type === "left" &&
+    css`
+      right: 0;
+    `}
+`;
+
+const Span = styled.span`
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #615551;
+`;
 function ServiceSection() {
   return (
-    <section className="section-feature w-full px-[7rem] py-[8rem]" id="services">
-      <h2 className="secondary__heading">Service and feature</h2>
-      <div className="feature">
-        <div className="feature__left">
-          <div className="feature__1">
-            <div className="feature-icon">
-              <img src="./imgs/discussion.png" alt="" />
-              <span className="arrow arrow__right"></span>
-            </div>
-            <div className="feature-label">
+    <section className="w-full p-[8rem_7rem_8rem_7rem]" id="services">
+      <Heading type="secondary">Service and feature</Heading>
+      <div className="mt-[10rem] flex justify-evenly gap-[8rem]">
+        <div className="flex  flex-[0_0_62%] flex-col">
+          <div className="flex justify-between">
+            <LeftFeatureIcon>
+              <img
+                src="./imgs/discussion.png"
+                alt=""
+                className="h-[50%] w-[50%]"
+              />
+              <Arrow type="right" />
+            </LeftFeatureIcon>
+            <FeatureLabel>
               <p>
                 Buying ingredient <br />
-                <span>Explore our recipe website and easily purchase </span>
-                <span>any food ingredient you need for a delicious meal.</span>
+                <Span>Explore our recipe website and easily purchase </Span>
+                <Span>any food ingredient you need for a delicious meal.</Span>
               </p>
-            </div>
+            </FeatureLabel>
           </div>
-          <div className="feature__2">
-            <div className="feature-label">
+          <div className="flex justify-between">
+            <FeatureLabel>
               <p>
                 Search more than 1000 recipe <br />
-                <span>
+                <Span>
                   Explore a world of delicious recipes for every palate,{" "}
-                </span>
-                <span>
+                </Span>
+                <Span>
                   with easy-to-follow instructions and step-by-step guides.
-                </span>
+                </Span>
               </p>
-            </div>
-            <div className="feature-icon">
-              <img src="./imgs/dish.png" alt="" />
-              <span className="arrow arrow__left"></span>
-            </div>
+            </FeatureLabel>
+            <LeftFeatureIcon>
+              <img src="./imgs/dish.png" alt="" className="h-[50%] w-[50%]" />
+              <Arrow type="left" />
+            </LeftFeatureIcon>
           </div>
         </div>
-        <div className="feature__right">
-          <div className="feature__3">
-            <div className="feature-icon">
-              <img src="./imgs/delivery-man.png" alt="" />
-              <p className="feature-caption">Cash on Delivery...</p>
-              <p className="feature-text">
-                Skip the store and still enjoy homemade goodness. Try our
-                recipes and get all the ingredients delivered for a seamless
-                cooking experience
-              </p>
-            </div>
-          </div>
+        <div className="flex-[0_0_20%]">
+          <RightFeatureIcon>
+            <img
+              src="./imgs/delivery-man.png"
+              alt=""
+              className="h-[150px] w-[150px]"
+            />
+            <p className="mt-[1rem] text-[2rem] font-bold">
+              Cash on Delivery...
+            </p>
+            <p className="mt-[1rem] text-center text-[1.4rem]">
+              Skip the store and still enjoy homemade goodness. Try our recipes
+              and get all the ingredients delivered for a seamless cooking
+              experience
+            </p>
+          </RightFeatureIcon>
         </div>
       </div>
     </section>
