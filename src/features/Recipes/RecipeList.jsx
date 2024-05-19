@@ -4,7 +4,7 @@ import Modal from "../../ui/Model";
 import RecipeMarkup from "./RecipeMarkup";
 export default function RecipeList({ name, image, id }) {
   return (
-    <li className="group flex w-[250px] cursor-pointer flex-col">
+    <li className="group flex w-[100%] cursor-pointer flex-col">
       <div className="h-[13rem] w-[100%] overflow-hidden rounded-[2rem]">
         <img
           src={image}

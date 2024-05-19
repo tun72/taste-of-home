@@ -13,9 +13,9 @@ export default function RecipeData({ country, category }) {
       </div>
     );
 
-    console.log(data);
+  console.log(data);
   return (
-    <ul className="grid 2xl:grid-cols-4 lg:grid-cols-3 justify-center gap-[4rem] pt-[2rem]">
+    <ul className="grid grid-cols-1 justify-center gap-[4rem] pt-[2rem] md:grid-cols-2 lg:grid-cols-3">
       {data.map((recipe) => (
         <RecipeList
           key={recipe.idMeal}

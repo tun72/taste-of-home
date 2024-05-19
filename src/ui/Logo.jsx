@@ -11,7 +11,7 @@ const Img = styled.img`
 `;
 
 function Logo() {
-  const src = "./icons/logos.png";
+  const src = "icons/logos.png";
   return (
     <StyledLogo>
       <Link to="/" className="text-center flex items-center">
