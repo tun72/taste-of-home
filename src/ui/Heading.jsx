@@ -27,5 +27,21 @@ const Heading = styled.h1`
       font-weight: 600;
       text-align: center;
     `}
+    ${(props) =>
+    (props.type === 
+      "secondary" &&
+      css`
+        width: 20%;
+        margin: 0 auto;
+        border-left: 10px solid #0de39d;
+        padding-left: 3rem;
+        font-size: 3rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        width: 40rem;
+        word-wrap: normal;
+        color: #590c79;
+        margin-bottom: 3rem;
+      `)}
 `;
 export default Heading;

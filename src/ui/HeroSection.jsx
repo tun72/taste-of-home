@@ -1,4 +1,3 @@
-import Heading from "./Heading";
 import { useObserver } from "../context/ObserverContext";
 import { useEffect, useRef, useState } from "react";
 import { HiMapPin } from "react-icons/hi2";
