@@ -146,7 +146,7 @@ function HeroSection() {
 
   return (
     <StyledHeaderLayout className="header" ref={ref}>
-      <Header ishome={"true"} />
+      <Header ishome={"true"}/>
       <StyledHeroLayout>
         <HeaderLeft>
           <div className="mt-[40px] flex-[0_0_45%]">

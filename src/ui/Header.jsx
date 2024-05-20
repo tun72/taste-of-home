@@ -11,13 +11,13 @@ const StyledHeader = styled.header`
   z-index: 10;
   /* background-color: green; */
   ${(props) =>
-    props.blur === true &&
+    props.blur === "true" &&
     css`
       background-color: #ffffff95;
       backdrop-filter: blur(5px);
     `}
   ${(props) =>
-    props.isHome &&
+    props.ishome &&
     css`
       position: fixed;
     `}
@@ -30,12 +30,12 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   margin: 0 auto;
 `;
-function Header({ ishome }) {
+function Header({ ishome = "" }) {
   const { isIntersecting } = useObserver();
   const { token } = useToken();
 
   return (
-    <StyledHeader blur={ishome && isIntersecting && "true"} isHome={ishome}>
+    <StyledHeader blur={isIntersecting === true ? "true" : ""} ishome={ishome}>
       <StyledNav>
         <Logo />
         <HeaderMenu />

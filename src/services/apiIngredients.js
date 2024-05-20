@@ -18,7 +18,6 @@ export async function getIngredients({ page, search, category }) {
   if (category)
     link = link + "&category=" + (category === "all" ? "" : category);
 
-  console.log(link);
   let query = await fetch(link);
 
   const data = await query.json();
@@ -56,10 +55,7 @@ export async function placeOrder({ token, order }) {
     }),
   });
 
-  console.log("dawdawdd");
   const data = await result.json();
-
-  console.log(data);
 
   return data;
 }
@@ -129,9 +125,8 @@ export async function getHistory({ token, state }) {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(token);
 
   const data = await query.json();
-  console.log(data);
+
   return data.shipping;
 }

@@ -21,11 +21,12 @@ const FooterInputLayout = styled.div`
 `;
 
 const FirstLine = styled.div`
-  width: 80%;
+  width: 90%;
   height: 0.1px;
+  margin: 0 auto;
   background-color: rgba(245, 245, 245, 0.582);
 `;
-const secondLine = styled.div`
+const SecondLine = styled.div`
   width: 80%;
   height: 0.1px;
   background-color: rgba(245, 245, 245, 0.582);
@@ -54,8 +55,8 @@ const Li = styled.li`
 `;
 export default function HomeFooter() {
   return (
-    <footer class="h-[500px] w-full bg-black" id="footer">
-      <div class="footer">
+    <footer className="h-[500px] w-full bg-black" id="footer">
+      <div className="footer">
         <FooterSearch>
           <h2 className="text-[1.6rem] font-semibold text-[#590c79]">
             subscribe
@@ -76,17 +77,16 @@ export default function HomeFooter() {
 
         <FirstLine />
 
-        <div class="flex justify-around p-[3rem_10rem]">
-          <div class="flex-[25%]">
+        <div className="flex justify-around p-[3rem_10rem]">
+          <div className="flex-[25%]">
             <img
               src="icons/logos.png"
               className="w-[10rem] fill-[#590c79]"
               alt=""
-              class="food_svg"
             />
           </div>
 
-          <div class="flex-[25%]">
+          <div className="flex-[25%]">
             <FooterSubHeading>PRODUCT</FooterSubHeading>
             <Ul>
               <Li>
@@ -104,7 +104,7 @@ export default function HomeFooter() {
             </Ul>
           </div>
 
-          <div class="flex-[25%]">
+          <div className="flex-[25%]">
             <FooterSubHeading>USEFUL PAGES</FooterSubHeading>
             <Ul>
               <Li>
@@ -122,7 +122,7 @@ export default function HomeFooter() {
             </Ul>
           </div>
 
-          <div class="flex-[25%]">
+          <div className="flex-[25%]">
             <FooterSubHeading>CONTACT INFO</FooterSubHeading>
             <Ul>
               <Li>
@@ -136,8 +136,8 @@ export default function HomeFooter() {
           </div>
         </div>
 
-        <secondLine />
-        <p class="mt-[2rem] flex items-center justify-center gap-1 text-center text-gray-300">
+        <SecondLine />
+        <p className="mt-[2rem] flex items-center justify-center gap-1 text-center text-gray-300">
           <BiCopyright /> 2024 Group 3 project. Developed by
           <Link
             to="https://github.com/Tun72"

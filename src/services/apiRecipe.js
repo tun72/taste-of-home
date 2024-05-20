@@ -23,12 +23,10 @@ export async function getCategory() {
 }
 
 export async function getRecipeDetail(id) {
-  console.log(id);
   const link = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
   const request = await fetch(link);
-  console.log(request);
+
   const data = await request.json();
-  console.log(data);
   return data.meals;
 }
 

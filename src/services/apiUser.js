@@ -16,7 +16,6 @@ export async function login({ email, password }) {
 
   if (data.status === "fail") throw new Error(data.message);
 
-  console.log(data);
   return data;
 }
 
@@ -47,7 +46,6 @@ export async function updateUser({ token, name, password }) {
     UPDATE_URL += "/api/user/edit-user";
   }
 
-  console.log(UPDATE_URL);
   const result = await fetch(`${UPDATE_URL}`, {
     method: "POST",
     headers: {

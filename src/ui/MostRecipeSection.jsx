@@ -68,7 +68,7 @@ function MostRecipeSection() {
 
       <MealLayout>
         {meals.map((meal, index) => (
-          <MealCard>
+          <MealCard key={index}>
             <img
               src={meal.strMealThumb}
               alt=""

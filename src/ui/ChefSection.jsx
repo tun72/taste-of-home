@@ -94,7 +94,7 @@ function ChefSection() {
       </div>
       <ChefContainer>
         {chefs.map((chef) => (
-          <ChefCard className="group" id={chef.id}>
+          <ChefCard className="group" id={chef.id} key={chef.id}>
             <img
               src={chef.image}
               alt=""

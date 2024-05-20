@@ -8,10 +8,10 @@ function MealLoading() {
           <MealCard key={arr}>
             <div className="h-[100%] w-[100%] rounded-[2rem] bg-slate-500"></div>
             <MealData>
-              <div class="h-2 w-[3rem] rounded bg-slate-500"></div>
+              <div className="h-2 w-[3rem] rounded bg-slate-500"></div>
               <div className="mt-[1rem] flex items-center justify-between">
-                <div class="h-2 w-[3rem] rounded bg-slate-500"></div>
-                <div class="h-10 w-10 rounded-full bg-slate-500"></div>
+                <div className="h-2 w-[3rem] rounded bg-slate-500"></div>
+                <div className="h-10 w-10 rounded-full bg-slate-500"></div>
               </div>
             </MealData>
           </MealCard>
