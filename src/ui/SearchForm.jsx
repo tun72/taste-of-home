@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useState } from "react";
+import {useSearchParams } from "react-router-dom";
+import { useDeleteAllQuery } from "../hooks/useDeleteAllQuery";
 
 const StyledSearchForm = styled.form`
   box-shadow: var(--shadow-sm);
@@ -24,11 +27,23 @@ const SearchFormInput = styled.input`
 `;
 
 function SearchForm() {
+  const [search, setSearch] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { setParam } = useDeleteAllQuery({ searchParams, setSearchParams });
+  function handelSubmit(e) {
+    e.preventDefault();
+    setParam({ name: "search", value: search });
+  }
+
   return (
-    <StyledSearchForm>
+    <StyledSearchForm onSubmit={handelSubmit}>
       <SearchFormInput
         type="text"
         className="search--input"
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
         placeholder="Search"
       />
       <button className="text-[1.5rem] ">

@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecipeDetail } from "./useRecipeDetail";
 import Spinner from "../../ui/Spinner";
-import { HiAcademicCap, HiBookOpen, HiCheck, HiPlay } from "react-icons/hi2";
+import {
+  HiAcademicCap,
+  HiBookOpen,
+  HiCheck,
+  HiPlay,
+  HiStop,
+} from "react-icons/hi2";
+import RecipeVideo from "./RecipeVideo";
+import Modal from "../../ui/Model";
+import RecipeBtn from "./RecipeBtn";
 
 export default function RecipeMarkup({ id }) {
   let { data, isLoading } = useRecipeDetail({ id });
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handelVideo() {
+    console.log("hi");
+    setIsOpen((prev) => !prev);
+  }
 
   if (isLoading)
     return (
@@ -32,7 +47,6 @@ export default function RecipeMarkup({ id }) {
       measure: data["strMeasure" + i],
     });
   }
-  console.log(ingredients);
 
   ingredients = ingredients.filter(
     (ing) =>
@@ -40,22 +54,29 @@ export default function RecipeMarkup({ id }) {
       ![null, ""].includes(ing?.name?.trim()),
   );
 
-  console.log(ingredients);
-
   return (
     <>
-      <div className="h-[280px] w-full">
-        <img src={image} alt="" className="h-full w-full object-cover" />
-      </div>
-      <div className="relative p-[2rem]">
-        <h4 className="absolute left-[13%] top-[-10rem] inline-block rotate-[-8deg] skew-x-[-8deg] skew-y-[-4deg] bg-gradient-to-tl  from-[#0de39d] to-[#7cf358] p-[1.8rem_5rem] text-[2.5rem] font-bold uppercase text-white">
-          {title}
-        </h4>
-        <h5 className="absolute left-[44%] top-[-4rem] inline-block rotate-[-8deg] skew-x-[-8deg] skew-y-[-4deg] bg-gradient-to-tl  from-[#0de39d] to-[#7cf358] p-[1.8rem_5rem] text-[2.5rem] font-bold uppercase text-white">
-          {area}
-        </h5>
+      {isOpen ? (
+        <RecipeVideo youtube={youtube} handelVideo={handelVideo} />
+      ) : (
+        <>
+          <div className="h-[280px] w-full">
+            <img src={image} alt="" className="h-full w-full object-cover" />
+          </div>
 
-        <div className="mb-[1rem] mt-[5rem] flex items-center justify-between p-[0_2rem]">
+          <div className="relative select-none">
+            <h4 className="absolute  left-[13%] top-[-10rem] inline-block rotate-[-8deg] skew-x-[-8deg] skew-y-[-4deg] bg-gradient-to-tl  from-[#0de39d] to-[#7cf358] p-[1.8rem_5rem] text-[2.5rem] font-bold uppercase text-white">
+              {title}
+            </h4>
+            <h5 className="absolute left-[44%] top-[-4rem] inline-block rotate-[-8deg] skew-x-[-8deg] skew-y-[-4deg] bg-gradient-to-tl  from-[#0de39d] to-[#7cf358] p-[1.8rem_5rem] text-[2.5rem] font-bold uppercase text-white">
+              {area}
+            </h5>
+          </div>
+        </>
+      )}
+
+      <div className="relative select-none p-[2rem]">
+        <div className="mb-[1rem] mt-[3.5rem] flex items-center justify-between p-[0_2rem]">
           <div className="flex items-center gap-[2rem]">
             <span className="flex items-center gap-4">
               <HiAcademicCap className="text-[3rem] text-green-400" />
@@ -66,9 +87,8 @@ export default function RecipeMarkup({ id }) {
               {ingredients.length} Ingredients
             </span>
           </div>
-          <div className="flex h-[5rem] w-[5rem]  cursor-pointer items-center justify-center rounded-[50%] bg-gradient-to-tl from-[#0de39d] to-[#7cf358] text-[2.5rem] font-bold text-white">
-            <HiPlay />
-          </div>
+
+          <RecipeBtn handelVideo={handelVideo} isOpen={isOpen} />
         </div>
 
         <hr />

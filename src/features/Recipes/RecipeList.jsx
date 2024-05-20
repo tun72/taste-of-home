@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiStar } from "react-icons/hi2";
 import Modal from "../../ui/Model";
 import RecipeMarkup from "./RecipeMarkup";
+import { useSearchParams } from "react-router-dom";
+import RecipeVideo from "./RecipeVideo";
+import { useRecipeDetail } from "./useRecipeDetail";
+
 export default function RecipeList({ name, image, id }) {
+  const [searchParams] = useSearchParams();
+  const country = searchParams.get("country");
+
   return (
     <li className="group flex w-[100%] cursor-pointer flex-col">
       <div className="h-[13rem] w-[100%] overflow-hidden rounded-[2rem]">
@@ -20,7 +27,7 @@ export default function RecipeList({ name, image, id }) {
               <HiStar className="text-[1.5rem] font-bold opacity-[0.6]" />
               <span>
                 <span className="text-[1.3rem] font-bold">3.8</span>
-                <span className="ml-[1.4rem] text-[1.3rem]">American</span>
+                <span className="ml-[1.4rem] text-[1.3rem]">{country}</span>
               </span>
             </p>
           </div>

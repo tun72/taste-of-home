@@ -1,5 +1,4 @@
 import { HiChevronUp } from "react-icons/hi2";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Heading from "./Heading";
 

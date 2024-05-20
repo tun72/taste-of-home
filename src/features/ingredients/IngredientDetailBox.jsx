@@ -4,6 +4,16 @@ import DetailInfo from "../../ui/DetailInfo";
 import Rating from "../../ui/Rating";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import styled from "styled-components";
+
+const StyledTag = styled.span`
+  border: 1px solid #590c79;
+  padding: 3px 4px;
+`;
+
+const Line = styled.div`
+  border: 1px solid var(--color-grey-200);
+`;
 
 function IngredientDetailBox({
   data: { name, price, _id, category, description, imageUrl, rating, quantity },
@@ -12,23 +22,25 @@ function IngredientDetailBox({
   return (
     <>
       {type !== 1 ? (
-        <div className="detail-box margin-bottom-sm">
-          <div className="detail-box__tag">
-            <span>{category}</span>
-            <span>{rating > 5 ? "high rated" : "medium rated"}</span>
+        <div className="rounded-[10px] p-[15px] shadow-2xl">
+          <div className="mb-[1.8rem] flex items-center justify-start gap-[10px]">
+            <StyledTag>{category}</StyledTag>
+            <StyledTag>{rating > 5 ? "high rated" : "medium rated"}</StyledTag>
           </div>
-          <h3 className="detail-box__name">{name}</h3>
+          <h3 className="text-[2.2rem] font-semibold">{name}</h3>
           <Rating rating={rating} />
-          <p className="detail-box__price">
+          <p className="mb-[1.8rem] text-[3rem] font-semibold">
             ${price}
-            <span className="detail-box__description ml-4">{description}</span>
+            <span className="ml-4 text-[1.8rem] font-semibold">
+              {description}
+            </span>
           </p>
-          <span className="detail-box__span">
+          <div className="mb-[1.8rem] text-[1.6rem]">
             price when you purchsed online
-          </span>
-          <div className="line"></div>
+          </div>
+          <Line />
           <DetailInfo />
-          <div className="line"></div>
+          <Line />
         </div>
       ) : (
         <div className="detail-box box-1">

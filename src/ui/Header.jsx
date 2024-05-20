@@ -29,14 +29,13 @@ const StyledNav = styled.nav`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
- 
 `;
 function Header({ ishome }) {
   const { isIntersecting } = useObserver();
   const { token } = useToken();
 
   return (
-    <StyledHeader blur={ishome && isIntersecting} isHome={ishome}>
+    <StyledHeader blur={ishome && isIntersecting && "true"} isHome={ishome}>
       <StyledNav>
         <Logo />
         <HeaderMenu />

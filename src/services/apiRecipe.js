@@ -12,7 +12,7 @@ export async function getReciepes({ country, category, search }) {
   const request = await fetch(link);
   const data = await request.json();
 
-  return data.meals;
+  return data?.meals ?? [];
 }
 
 export async function getCategory() {

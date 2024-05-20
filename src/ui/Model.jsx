@@ -50,7 +50,8 @@ const Overlay = styled.div`
 `;
 
 const Button = styled.button`
-  background: green;
+  background: var(--color-green-700);
+  color: white;
   border: none;
   padding: 0.4rem;
   border-radius: var(--border-radius-sm);
@@ -93,6 +94,17 @@ function Open({ children, opens: OpenName }) {
   const { open } = useContext(ModalContext);
   return cloneElement(children, { onClick: () => open(OpenName) });
 }
+
+function Close({ children, handelFunction }) {
+  const { close } = useContext(ModalContext);
+  return cloneElement(children, {
+    onClick: () => {
+      close();
+      handelFunction();
+    },
+  });
+}
+
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
 
@@ -103,8 +115,8 @@ function Window({ children, name }) {
   if (name !== openName) return null;
   return createPortal(
     <Overlay>
-      <StyledModal>
-        <Button onClick={close} ref={ref}>
+      <StyledModal ref={ref}>
+        <Button onClick={close}>
           <HiXMark />
         </Button>
         <div>{cloneElement(children, { onCloseModal: () => close() })}</div>
@@ -117,4 +129,5 @@ function Window({ children, name }) {
 
 Modal.Open = Open;
 Modal.Window = Window;
+Modal.Close = Close;
 export default Modal;

@@ -32,11 +32,9 @@ const StyledAppLayout = styled.div`
 `;
 
 function AppLayout() {
-  const location = useLocation();
-
   return (
     <StyledAppLayout>
-      <Header ishome={location.pathname === "/home" ? "true" : ""} />
+      <Header />
       <Main>
         <Outlet />
       </Main>
