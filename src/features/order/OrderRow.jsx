@@ -29,36 +29,37 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-function OrderRow({ order }) {
-  const { _id, filePath, ingredients, payment, status, userId, createdAt } = order;
+function  OrderRow({ order }) {
+  // const total = order?.ingredients?.reduce(
+  //   (prev, curr) => prev + curr.ingredient.price * curr.quantity,
+  //   0,
+  // );
 
-  const total = ingredients.reduce(
-    (prev, curr) => prev + curr.ingredient.price * curr.quantity,
-    0,
-  );
-
+  const total = 0;
   let pending = "bg-yellow-50 text-yellow-600 ring-yellow-600/20";
-  let success = "bg-green-50 text-green-600 ring-green-600/20"
+  let success = "bg-green-50 text-green-600 ring-green-600/20";
   return (
     <Table.Row>
-      <OrderId>{_id}</OrderId>
-      <Amount>{ingredients.length} ingredients</Amount>
+      <OrderId>{order?._id}</OrderId>
+      <Amount>{order?.ingredients.length} ingredients</Amount>
 
       <Amount>$ {total}</Amount>
-      <p>{payment}</p>
-      
+      <p>{order?.payment}</p>
+
       <p>
-        <a href={URL + "/docs/" + filePath} className="text-green-400">
-          download reciepe{" "}
+        <a href={URL + "/docs/" + order?.filePath} className="text-green-400">
+          download receipt
         </a>
       </p>
 
-      <p className={`w-fit  rounded-md px-2 py-1  text-[1.25rem] ring-1 ring-inset ${status === "Pending" ? pending : success}`} >
-        {status}
+      <p
+        className={`w-fit  rounded-md px-2 py-1  text-[1.25rem] ring-1 ring-inset ${
+          order?.status === "Pending" ? pending : success
+        }`}
+      >
+        {order?.status}
       </p>
-      <p>
-        {new Date(createdAt).toLocaleString()}
-      </p>
+      <p>{new Date(order?.createdAt).toLocaleString()}</p>
     </Table.Row>
   );
 }

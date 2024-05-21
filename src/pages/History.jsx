@@ -2,11 +2,13 @@ import HIstoryTable from "../features/history/HIstoryTable";
 import Row from "../ui/Row";
 import Heading from "../ui/Heading";
 import HistoryTableOperation from "../features/history/HistoryTableOperation";
+import styled from "styled-components";
+
 function History() {
   return (
-    <div className="mx-auto flex max-w-[120rem] flex-col gap-10">
+    <div className="mx-auto flex max-w-[80%] flex-col py-[4rem] gap-[2.5rem]">
       <Row type="horizontal">
-        <Heading as="h1">User History</Heading>
+        <Heading as="h2">User Order History</Heading>
         {/* <CabinTableOperations /> */}
         <HistoryTableOperation />
       </Row>

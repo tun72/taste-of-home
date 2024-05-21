@@ -12,7 +12,7 @@ const StyledHeaderMenu = styled.ul`
 function HeaderMenu() {
   const location = useLocation();
 
-  const headerItems = ["recipes", "ingredients", "blogs"];
+  const headerItems = ["recipes", "ingredients", "history"];
   // if (location.pathname !== "/home")
   //   headerItems = ["recipes", "ingredients", "Asia", "history"];
 

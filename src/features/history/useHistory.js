@@ -4,16 +4,12 @@ import { useToken } from "../../hooks/useToken";
 import { useSearchParams } from "react-router-dom";
 
 export function useHistory() {
-  const { token } = useToken();
   const [searchParams, setSearchParams] = useSearchParams();
   const state = searchParams.get("status");
-
   const { data, isLoading } = useQuery({
-    queryFn: () => getHistory({ token,state }),
+    queryFn: () => getHistory({ state }),
     queryKey: ["histories", state],
   });
-
-
 
   return { data, isLoading };
 }
