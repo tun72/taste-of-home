@@ -2,10 +2,6 @@ import styled from "styled-components";
 import OrderFormRows from "../features/order/OrderFormRows";
 
 import Heading from "../ui/Heading";
-import { useSelector } from "react-redux";
-import { getCart } from "../features/cart/cartSlice";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const OrderStyled = styled.div`
   width: 70%;
@@ -17,13 +13,9 @@ const OrderStyled = styled.div`
 `;
 
 function Order() {
-  const cart = useSelector(getCart);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    let isCart = cart.ingredients.length !== 0;
-    if (!isCart) return navigate("/ingredients");
-  }, [cart, navigate]);
+  // const cart = useSelector(getCart);
+  // let isCart = cart.ingredients.length !== 0;
+  // if (!isCart) return <Error />;
 
   return (
     <OrderStyled>

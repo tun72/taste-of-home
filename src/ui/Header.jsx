@@ -35,7 +35,10 @@ function Header({ ishome = "" }) {
   const { token } = useToken();
 
   return (
-    <StyledHeader blur={isIntersecting === true ? "true" : ""} ishome={ishome}>
+    <StyledHeader
+      blur={isIntersecting === true && ishome === "true" ? "true" : ""}
+      ishome={ishome}
+    >
       <StyledNav>
         <Logo />
         <HeaderMenu />

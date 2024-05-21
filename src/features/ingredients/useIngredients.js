@@ -12,6 +12,7 @@ export function useIngredients() {
   const { data, isLoading, error } = useQuery({
     queryFn: () => getIngredients({ page, search, category }),
     queryKey: ["ingredients", page, search, category],
+    
   });
 
   const count = data?.total;

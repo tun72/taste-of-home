@@ -44,20 +44,25 @@ export async function getCategory() {
 }
 
 export async function placeOrder({ token, order }) {
-  const result = await fetch(`${URL}/api/ingredients/add-to-shipping`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      ...order,
-    }),
-  });
+  try {
+    const result = await fetch(`${URL}/api/ingredients/add-to-shipping`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...order,
+      }),
+    });
 
-  const data = await result.json();
+    if (!result.ok) throw new Error("Something went wrong");
 
-  return data;
+    const data = await result.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 }
 
 // THIS PLACE BELONG TO CART

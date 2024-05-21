@@ -41,10 +41,10 @@ const Success = styled.span`
   color: var(--color-brand-500);
 `;
 
-function FormRow({ children, success, error, label }) {
+function FormRow({ children, success, error, label}) {
   return (
     <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}
       {success && <Success>{success}</Success>}

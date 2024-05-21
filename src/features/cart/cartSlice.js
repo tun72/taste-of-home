@@ -174,6 +174,8 @@ export function clearCart() {
   };
 }
 
+
+
 // useful helper functions
 export const getCart = (state) => state.cart;
 export const getLength = (state) => state.cart.ingredients.length;

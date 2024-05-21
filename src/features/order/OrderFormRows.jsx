@@ -9,12 +9,10 @@ import Button from "../../ui/Button";
 import OrderDetailPage from "./OrderDetailPage";
 import { useOrder } from "./useOrder";
 import Spinner from "../../ui/Spinner";
-import SpinnerMini from "../../ui/SpinnerMini";
-import { URL } from "../../utils/constants";
-
-import { Link } from "react-router-dom";
-import Confetti from "react-confetti";
+import Error from "./Error";
 import OrderSuccess from "./OrderSuccess";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../cart/cartSlice";
 
 const initialState = {
   payment: "",
@@ -50,14 +48,18 @@ function reducer(state, action) {
 function OrderFormRows() {
   const [orderPage, setOrderPage] = useState(0);
   const { user } = useUser();
-  // const { dispatch: dispatch_API } = useCart();
 
-  const [state, dispatch] = useReducer(reducer, { initialState, ...user });
+  const [state, dispatch] = useReducer(reducer, { ...initialState, ...user });
+
+  const cartDispatch = useDispatch();
 
   const { orderNow, isLoading, status, data } = useOrder();
-  // const { dispatch: cartDispatch } = useCart();
-
   const { name, email, phone, address, city, zipcode, payment } = state;
+
+  let arr = [name, email, phone, address, city, zipcode, payment];
+  const isDisable = arr.includes("") || arr.includes(null);
+
+  console.log(isDisable, state);
 
   function nextPage() {
     setOrderPage((page) => page + 1);
@@ -68,22 +70,9 @@ function OrderFormRows() {
   }
   function handelOrder(e) {
     e.preventDefault();
-
-    orderNow({ order: { city, address, zipcode, payment } });
+    if (!isDisable) orderNow({ order: { city, address, zipcode, payment } });
     // cartDispatch({ type: "cart/clear" });
   }
-
-  const isDisable = [
-    name,
-    email,
-    phone,
-    address,
-    city,
-    zipcode,
-    payment,
-  ].includes("");
-
-  console.log(isDisable);
 
   if (isLoading) {
     return (
@@ -94,8 +83,15 @@ function OrderFormRows() {
   }
 
   if (status === "success") {
+    cartDispatch(clearCart());
     return <OrderSuccess filePath={data.filePath} />;
   }
+
+  if(status === "error") {
+    return <Error />
+  }
+
+ 
 
   return (
     <OrderForm orderPage={orderPage}>
@@ -109,9 +105,9 @@ function OrderFormRows() {
       )}
       {orderPage === 1 && (
         <OrderFormRowTwo
-          address={address}
-          city={city}
-          zipcode={zipcode}
+          address={address || ""}
+          city={city || ""}
+          zipcode={zipcode || ""}
           dispatch={dispatch}
         />
       )}
@@ -121,12 +117,7 @@ function OrderFormRows() {
 
       <FormRow>
         {orderPage > 0 && (
-          <Button
-            type="reset"
-            variation="secondary"
-            onClick={prevPage}
-            dispatch={dispatch}
-          >
+          <Button type="reset" variation="secondary" onClick={prevPage}>
             Previous
           </Button>
         )}
