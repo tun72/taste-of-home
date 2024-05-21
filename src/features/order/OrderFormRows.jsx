@@ -18,6 +18,12 @@ import OrderSuccess from "./OrderSuccess";
 
 const initialState = {
   payment: "",
+  name: "",
+  email: "",
+  address: "",
+  phone: "",
+  city: "",
+  zipcode: "",
 };
 
 function reducer(state, action) {
@@ -66,6 +72,18 @@ function OrderFormRows() {
     orderNow({ order: { city, address, zipcode, payment } });
     // cartDispatch({ type: "cart/clear" });
   }
+
+  const isDisable = [
+    name,
+    email,
+    phone,
+    address,
+    city,
+    zipcode,
+    payment,
+  ].includes("");
+
+  console.log(isDisable);
 
   if (isLoading) {
     return (
@@ -118,7 +136,9 @@ function OrderFormRows() {
           </Button>
         )}
         {orderPage === 3 && (
-          <Button onClick={(e) => handelOrder(e)}>order now</Button>
+          <Button disabled={isDisable} onClick={(e) => handelOrder(e)}>
+            order now
+          </Button>
         )}
       </FormRow>
     </OrderForm>

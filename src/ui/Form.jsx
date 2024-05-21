@@ -21,6 +21,8 @@ const Form = styled.form`
       width: 80rem;
     `}
     
+
+    
   overflow: hidden;
   font-size: 1.4rem;
 `;

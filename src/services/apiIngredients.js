@@ -115,9 +115,10 @@ export async function deleteCart(id = "") {
   return id || true;
 }
 
-export async function getHistory({ state }) {
+export async function getHistory({ status }) {
   const { token } = await getToken();
-  let link = URL + "/api/ingredients/get-history?status=" + state;
+  if (status === "all") status = "";
+  let link = URL + "/api/ingredients/get-history?status=" + status;
   let query = await fetch(link, {
     method: "get",
     headers: {

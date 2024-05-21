@@ -1,16 +1,14 @@
-import styled from "styled-components";
-import { useToken } from "../../hooks/useToken";
+
 import Spinner from "../../ui/Spinner";
 import Table from "../../ui/Table";
 import OrderRow from "../order/OrderRow";
 import { useHistory } from "./useHistory";
 
-function HIstoryTable() {
+function HistoryTable() {
   const { data, isLoading } = useHistory();
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
+  
   let { shipping: orders } = data;
 
   return (
@@ -31,4 +29,4 @@ function HIstoryTable() {
   );
 }
 
-export default HIstoryTable;
+export default HistoryTable;

@@ -14,13 +14,30 @@ const ProgressStyled = styled.progress`
   width: 100%;
   height: 12px;
   grid-column: 1 / -1;
+  &::-webkit-progress-bar {
+    border-radius: 7px;
+  }
+
+  &::-webkit-progress-value {
+    border-radius: 7px;
+  }
 `;
 
 function OrderForm({ children, orderPage }) {
+  const steps = {
+    1: "Fill in your information",
+    2: "Fill in your Address",
+    3: "Choose Payment",
+    4: "Finish and Order",
+  };
+
   return (
     <Form>
       {orderPage != null && (
         <ProgressHeader>
+          <h3 class="text-xl font-semibold">
+            Step {orderPage + 1}: {steps[orderPage + 1]}
+          </h3>
           <ProgressStyled value={orderPage} max={3} />
         </ProgressHeader>
       )}
@@ -28,5 +45,4 @@ function OrderForm({ children, orderPage }) {
     </Form>
   );
 }
-
 export default OrderForm;
